@@ -1,4 +1,4 @@
-![神輿會](/Festa/app/assets/images/1.png)
+![神輿會](https://github.com/area6080/Mikoshi_Majesty/blob/main/app/assets/images/1.png)
 ## テーマ
 ##### イベント（お祭り）の情報を共有できるコミュニティサイト
 
