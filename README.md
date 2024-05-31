@@ -38,4 +38,4 @@
 ## 使用素材
 * 著作権を考慮し、架空のデータを扱う予定です。
 * フリーイラスト素材として以下を使用
-* いらすとや(https://www.irasutoya.com/
+* いらすとや(https://www.irasutoya.com/)
