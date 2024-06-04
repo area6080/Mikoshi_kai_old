@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
   sessions: "admin/sessions"
   }
-  
+
   devise_for :users,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
   }
 
   namespace :admin do
-    get 'homes/top' => 'homes#top', as: 'top'
+    get '/' => 'homes#top', as: 'top'
     resources :users, only: [:index, :show, :destroy]
     resources :post_events, only: [:index, :show, :destroy]
     resources :groups, only: [:index, :show, :destroy]
@@ -19,15 +19,16 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     resources :users, only: [:edit, :update, :destroy]
-    get 'users/mypage' => 'customers#show', as: 'mypage'
-    resources :groups, except: [:index]
-    resources :participations, only: [:create, :destroy]
+    get 'mypage' => 'customers#show', as: 'mypage'
+    resources :groups, except: [:index] do
+      resource :participation, only: [:create, :destroy]
+    end
     resources :post_events, except: [:index] do
       resources :post_comments, only: [:create, :destroy]
+      resource :favorite, only: [:create, :destroy]
     end
-    resources :favorites, only: [:create, :destroy]
   end
-  
+
   get 'searches/index' => 'search#index', as: 'search'
-  get 'maps/show' => 'map#show', as: 'map'
+  get 'map' => 'map#show', as: 'map'
 end
