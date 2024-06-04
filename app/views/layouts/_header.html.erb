@@ -1,0 +1,40 @@
+<header class="sticky-top border-bottom bg-white">
+  <nav class="">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3 pl-4">
+          <a class="navbar-brand" href="/"><%= image_tag('1.png', size: "150x50") %></a>
+        </div>
+        <div class="col-3">
+          ユーザーの名前とアイコン
+          <!--% if customer_signed_in? %>-->
+          <!--  <p class="mt-4">ようこそ、%= current_customer.last_name %>さん！</p>-->
+          <!--% end %>-->
+        </div>
+        <div class="col-6">
+          <div class="row justify-content-end mr-1">
+            <ul class="nav">
+              <% if admin_signed_in? %>
+                <%= render 'layouts/admin_header' %>
+              <% elsif user_signed_in? %>
+                <%= render 'layouts/user_header' %>
+              <% else %>
+                <%= render 'layouts/before_signin_header' %>
+              <% end %>
+            </ul>
+          </div>
+          <div class="row justify-content-end mr-1 mt-1">
+            <%= form_with url: search_path, method: :get do |f| %>
+            <div class="input-group">
+              <%= f.text_field :word, placeholder: "Search" %>
+              <%= button_tag type: "submit", class: "btn btn-outline-primary btn-sm" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
