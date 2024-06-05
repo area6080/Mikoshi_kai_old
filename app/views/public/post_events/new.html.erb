@@ -1,2 +1,38 @@
-<h1>Public::PostEvents#new</h1>
-<p>Find me in app/views/public/post_events/new.html.erb</p>
+<div class="form-body p-4">
+
+
+  <%= form_with model: @post_event do |f| %>
+    <%= f.file_field :image, accept: "image/*", class: "w-100" %>
+    <div class="input-group mb-3 mt-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" aria-hidden="true"><i class="fas fa-building"></i></span>
+      </div>
+      <%= f.text_field :title, class: "form-control", placeholder: "イベント名" %>
+    </div>
+
+    <div class="input-group mb-3 mt-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-tenge-sign"></i></span>
+      </div>
+      <%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号" %>
+    </div>
+
+    <div class="input-group mb-3 mt-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+      </div>
+      <%= f.text_field :event_date, class: "form-control", placeholder: "開催日時" %>
+    </div>
+    
+    <div class="input-group mb-3 mt-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+      </div>
+      <%= f.text_field :address, class: "form-control", placeholder: "住所" %>
+    </div>
+
+    <%= f.text_area :caption, class: "form-control", rows: "3", placeholder: "イベントの説明をどうぞ" %>
+    <hr>
+    <%= f.submit '投稿', class: "btn btn-lg btn-block btn-info mt-2" %>
+  <% end %>
+</div>

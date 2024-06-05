@@ -6,9 +6,9 @@ class CreatePostEvents < ActiveRecord::Migration[6.1]
       t.string :title,            null: false
       t.text :caption
       t.string :event_date,       null: false
-      t.string :address,          null: false
-      t.float :latitude,          null: false, default: 0,0
-      t.float :longitude,         null: false, default: 0,0
+      t.string :address,          null: false, default: ""
+      t.float :latitude,          null: false, default: 0
+      t.float :longitude,         null: false, default: 0
 
       t.timestamps
     end

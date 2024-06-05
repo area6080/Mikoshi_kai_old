@@ -1,2 +1,29 @@
-<h1>Public::PostEvents#edit</h1>
-<p>Find me in app/views/public/post_events/edit.html.erb</p>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-6 mt-2 mx-auto">
+      <h2>Editing Event</h2>
+      <!--% if @book.errors.any? %>-->
+      <!--  <h3>%= @book.errors.count %>error prohibited this obj from being saved:</h3>-->
+      <!--  <ul>-->
+      <!--    % @book.errors.full_messages.each do |message| %>-->
+      <!--      <li>%= message %></li>-->
+      <!--    % end %>-->
+      <!--  </ul>-->
+      <!--% end %>-->
+
+      <%= form_with model: @post_event,method: :patch do |f| %>
+        <p>Title</p>
+        <%= f.text_field :title, autofocus: true, class: "form-control" %><br>
+        <p>Opinion</p>
+        <%= f.text_area :caption,class: "form-control" %><br>
+        <p>Date</p>
+        <%= f.text_field :event_date,class: "form-control" %><br>
+        <p>Address</p>
+        <%= f.text_area :address,class: "form-control" %><br>
+        <%= f.submit 'Update Event',class: 'btn btn-success' %>
+      <% end %>
+      
+      <%= link_to "Show", post_event_path(@post_event.id) %> 
+    </div>
+  </div>
+</div>
