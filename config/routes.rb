@@ -29,6 +29,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'searches/index' => 'search#index', as: 'search'
-  get 'map' => 'map#show', as: 'map'
+  get 'searches/index' => 'searches#index', as: 'search'
+  get 'map' => 'maps#show', as: 'map'
 end

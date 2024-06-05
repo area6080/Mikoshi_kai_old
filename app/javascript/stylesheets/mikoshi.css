@@ -1,5 +1,14 @@
 .main-visual {
-  width: 100%;
-  height: 300px;
-  background-image: url(app/assets/images/main_v.jpg);
+  width: 80%;
+  height: 600px;
+  background-image: url('main_v.jpg');
+  background-size: cover;
+}
+
+.second-visual {
+  width: 50%;
+  height: 600px;
+  background-image: url('second_v.jpg');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
