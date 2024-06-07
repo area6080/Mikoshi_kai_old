@@ -2,7 +2,7 @@ class Public::UsersController < ApplicationController
     # before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @post_events = @user.post_events
   end
 
@@ -29,7 +29,7 @@ class Public::UsersController < ApplicationController
     private
 
   def update_user_params
-    params.require(:user).permit(:name, :introduction)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
 end
 

@@ -43,11 +43,11 @@ class Public::PostEventsController < ApplicationController
   private
 
   def post_event_params
-    params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :user_id)
+    params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :user_id, :image)
   end
 
   def update_post_event_params
-    params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude)
+    params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :image)
   end
   
   def is_matching_login_user
