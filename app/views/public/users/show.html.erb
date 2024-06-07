@@ -1,13 +1,35 @@
-<h1>ユーザーの詳細</h1>
 
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-
-  <% if @user == current_user %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <p><%= link_to "退会", user_path(@user), method: :delete %></p>
-  <% end %>
-  <!--admin_signin?-->
-  <!--削除-->
+<div class="container">
+  <div class="row mt-3">
+    <div class="col-md-6 mx-auto">
+      <table class="table font-weight-bold">
+        <tbody>
+          <tr>
+            <td></td>
+            <td><%= image_tag @user.get_profile_image(100,100) %></td>
+          </tr>
+          <tr>
+            <td>name</td>
+            <td><%= @user.name %></td>
+          </tr>
+          <tr>
+            <td>introduction</td>
+            <td><%= @user.introduction %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <% if @user == current_user %>
+              <p><%= link_to "プロフィール編集", edit_user_path(@user),class:'btn btn-info' %></p>
+              <p><%= link_to "退会", user_path(@user), method: :delete,class:'btn btn-danger' %></p>
+              <% end %>
+              <!--admin_signin?-->
+              <!--削除-->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
+
