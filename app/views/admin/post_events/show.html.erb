@@ -1,2 +1,14 @@
 <h1>Admin::PostEvents#show</h1>
 <p>Find me in app/views/admin/post_events/show.html.erb</p>
+
+<div>
+  <%= image_tag @post_event.get_image %>
+  <p>イベント名：<%= @post_event.shop_name %></p>
+  <p>開催日時：<%= @post_event.event_date %></p>
+  <p>説明：<%= @post_event.caption %></p>
+  <p>投稿ユーザー画像：<%= image_tag @post_event.user.get_profile_image(100,100) %></p>
+  <p>ユーザーネーム：<%= @post_event.user.name %></p>
+
+
+  <%= link_to "削除", post_event_path(@post_event), method: :delete %>
+</div>

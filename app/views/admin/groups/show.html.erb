@@ -1,2 +1,7 @@
 <h1>Admin::Groups#show</h1>
 <p>Find me in app/views/admin/groups/show.html.erb</p>
+
+<div>
+  <p>イベント名：<%= @group.name %></p>
+  <%= link_to "削除", group_path(@group), method: :delete %>
+</div>

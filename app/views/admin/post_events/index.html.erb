@@ -14,7 +14,11 @@
     <% @post_events.each do |post_event| %>
       <tr>
         <td><%= post_event.id %></td>
-        <td><%= post_event.title) %></td>
+        <td>
+        <%= link_to(post_event_path(post_event.id), class: "text-dark") do %>
+          <strong><i class="far fa-flag"></i><span> <%= post_event.title %></span></strong>
+        <% end %>
+        </td>
         <td><%= post_event.event_date %></td>
         <td><%= post_event.address %></td>
       </tr>
