@@ -4,6 +4,7 @@ class Public::PostEventsController < ApplicationController
   end
 
   def show
+    @post_event = PostEvent.find(params[:id])
   end
 
   def create
