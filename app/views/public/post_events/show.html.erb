@@ -1,7 +1,7 @@
 
 <div>
-  <%= image_tag @post_event.get_image %>
-  <p>イベント名：<%= @post_event.shop_name %></p>
+  <%= image_tag @post_event.get_image(100,100) %>
+  <p>イベント名：<%= @post_event.title %></p>
   <p>開催日時：<%= @post_event.event_date %></p>
   <p>説明：<%= @post_event.caption %></p>
   <p>投稿ユーザー画像：<%= image_tag @post_event.user.get_profile_image(100,100) %></p>

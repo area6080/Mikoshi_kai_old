@@ -22,7 +22,7 @@ async function initMap() {
   });
   
   try {
-    const response = await fetch("/post_images.json");
+    const response = await fetch("/post_events.json");
     if (!response.ok) throw new Error('Network response was not ok');
 
     const { data: { items } } = await response.json();

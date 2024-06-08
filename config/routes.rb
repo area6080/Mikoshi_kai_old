@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :groups, except: [:index] do
       resource :participation, only: [:create, :destroy]
     end
-    resources :post_events, except: [:index] do
+    resources :post_events do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
     end

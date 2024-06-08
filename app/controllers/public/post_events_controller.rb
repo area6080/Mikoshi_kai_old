@@ -17,6 +17,7 @@ class Public::PostEventsController < ApplicationController
 
   def show
     @post_event = PostEvent.find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def create
