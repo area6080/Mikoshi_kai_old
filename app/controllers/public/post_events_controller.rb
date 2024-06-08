@@ -1,4 +1,16 @@
 class Public::PostEventsController < ApplicationController
+  
+  def index
+    respond_to do |format|
+      format.html do
+        @post_events = PostEvent.all
+      end
+      format.json do
+        @post_events = PostEvent.all
+      end
+    end
+  end
+  
   def new
     @post_event = PostEvent.new
   end
