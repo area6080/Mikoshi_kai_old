@@ -1,4 +1,5 @@
 class Public::PostEventsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   
   def index
     respond_to do |format|
@@ -32,12 +33,12 @@ class Public::PostEventsController < ApplicationController
   end
 
   def edit
-    @post_event = post_event.find(params[:id])
+    @post_event = PostEvent.find(params[:id])
     @user = User.find(@post_event.user_id)
   end
 
   def update
-    @post_event = post_event.find(params[:id])
+    @post_event = PostEvent.find(params[:id])
     if @post_event.update(update_post_event_params)
       flash[:notice] = "You have updated post_event successfully."
       redirect_to post_event_path(@post_event.id)
@@ -47,7 +48,7 @@ class Public::PostEventsController < ApplicationController
   end
 
   def destroy
-    post_event = post_event.find(params[:id])
+    post_event = PostEvent.find(params[:id])
     post_event.destroy
     redirect_to post_events_path
   end
@@ -63,11 +64,11 @@ class Public::PostEventsController < ApplicationController
     params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :image)
   end
   
-  def is_matching_login_user
-    post_event = post_event.find(params[:id])
-    user = User.find(post_event.user_id)
-    unless user.id == current_user.id
-      redirect_to post_events_path
-    end
-  end
+  # def is_matching_login_user
+  #   post_event = post_event.find(params[:id])
+  #   user = User.find(post_event.user_id)
+  #   unless user.id == current_user.id
+  #     redirect_to post_events_path
+  #   end
+  # end
 end

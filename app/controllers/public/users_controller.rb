@@ -21,9 +21,9 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-    user = user.find(params[:id])
+    user = User.find(params[:id])
     user.destroy
-    redirect_to root_path
+    redirect_to new_user_registration_path
   end
   
     private

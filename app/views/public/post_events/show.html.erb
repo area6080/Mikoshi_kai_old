@@ -1,33 +1,62 @@
-
-<div>
-  <%= image_tag @post_event.get_image(100,100) %>
-  <p>イベント名：<%= @post_event.title %></p>
-  <p>開催日時：<%= @post_event.event_date %></p>
-  <p>説明：<%= @post_event.caption %></p>
-  <p>投稿ユーザー画像：<%= image_tag @post_event.user.get_profile_image(100,100) %></p>
-  <p>ユーザーネーム：<%= @post_event.user.name %></p>
-
-  <% if @post_event.user == current_user %>
-  <%= link_to "削除", post_event_path(@post_event), method: :delete %>
-  <% end %>
-</div>
-
-<div>
-  <p>コメント件数：<%= @post_event.post_comments.count %></p>
-  <% @post_event.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-
-    <% if post_comment.user == current_user %>
-    <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: [@post_event, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをどうぞ" %>
-    <%= f.submit "送信" %>
-  <% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="row mt-2">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td><%= image_tag @post_event.get_image(200,200) %></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>イベント名</td>
+              <td><%= @post_event.title %></td>
+            </tr>
+            <tr>
+              <td>開催日時</td>
+              <td><%= @post_event.event_date %></td>
+            </tr>
+            <tr>
+              <td>説明</td>
+              <td><%= @post_event.caption %></td>
+            </tr>
+            <tr>
+              <td><%= image_tag @post_event.user.get_profile_image(100,100) %></td>
+              <td><%= @post_event.user.name %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <% if @post_event.user == current_user %>
+                  <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
+                  <%= link_to "削除", post_event_path(@post_event), method: :delete,class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
+                <% end %>
+                <!--admin_signin?-->
+                <!--削除-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="row mt-2">
+        <p>コメント件数：<%= @post_event.post_comments.count %></p>
+        <% @post_event.post_comments.each do |post_comment| %>
+          <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
+          <%= post_comment.user.name %>
+          <%= post_comment.comment %>
+      
+          <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="row mt-2">
+        <%= form_with model: [@post_event, @post_comment] do |f| %>
+          <%= f.text_area :comment, rows: '3', placeholder: "コメントをどうぞ" %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 

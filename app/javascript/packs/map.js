@@ -15,7 +15,7 @@ async function initMap() {
   // クラウドカスタマイズ機能を使用する
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.687295, lng: 135.525809 },
-    zoom: 14,
+    zoom: 11,
     mapId: "12e54403ce86cc3",
     mapTypeControl: false,
 
@@ -44,17 +44,6 @@ async function initMap() {
         map,
         title: shopName,
         // 他の任意のオプションもここに追加可能
-      });
-      
-      const beachFlagImg = document.createElement("img");
-      beachFlagImg.src =
-        "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-        
-      const beachFlagMarkerView = new AdvancedMarkerElement({
-        map,
-        position: { lat: 34.687295, lng: 135.525809 },
-        content: beachFlagImg,
-        title: "Osaka Catsle",
       });
       
       const contentString = `

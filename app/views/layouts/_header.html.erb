@@ -1,9 +1,9 @@
-<header class="sticky-top border-bottom bg-white">
+<header class="sticky-top border-bottom matsuri-style">
   <nav class="">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-3 pl-4">
-          <a class="navbar-brand" href="/"><%= image_tag('logo.png', size: "180x60") %></a>
+        <div class="col-3">
+          <a class="navbar-brand" href="/"><%= image_tag('logo.png', size: "200x70") %></a>
         </div>
         <div class="col-3">
           ユーザーの名前とアイコン
@@ -11,7 +11,7 @@
           <!--  <p class="mt-4">ようこそ、%= current_customer.last_name %>さん！</p>-->
           <!--% end %>-->
         </div>
-        <div class="col-6">
+        <div class="col-5 offset-1">
           <div class="row justify-content-end mr-1">
             <ul class="nav">
               <% if admin_signed_in? %>

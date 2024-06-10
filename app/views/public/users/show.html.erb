@@ -1,13 +1,11 @@
-
 <div class="container">
-  <div class="row mt-3">
-    <div class="col-md-6 mx-auto">
+  <div class="row justify-content-center mt-3">
+    <div class="col-2">
+      <%= image_tag @user.get_profile_image(100,100) %>
+    </div>
+    <div class="col-4">
       <table class="table table-borderless">
         <tbody>
-          <tr>
-            <td></td>
-            <td><%= image_tag @user.get_profile_image(100,100) %></td>
-          </tr>
           <tr>
             <td>name</td>
             <td><%= @user.name %></td>
@@ -16,20 +14,34 @@
             <td>introduction</td>
             <td><%= @user.introduction %></td>
           </tr>
-          <tr>
-            <td></td>
-            <td>
-              <% if @user == current_user %>
-              <p><%= link_to "プロフィール編集", edit_user_path(@user),class:'btn btn-info' %></p>
-              <p><%= link_to "退会", user_path(@user), method: :delete,class:'btn btn-danger' %></p>
-              <% end %>
-              <!--admin_signin?-->
-              <!--削除-->
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>
+    <div class="col-2">
+      <% if @user == current_user %>
+        <%= link_to "プロフィール編集", edit_user_path(@user),class:'btn btn-info' %><br>
+        <%= link_to "退会", user_path(@user), method: :delete,class:'btn btn-danger mt-1', "data-confirm" => "本当に退会しますか?" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <h6>イベント一覧</h6>
+      </thead>
+      <tbody>
+        <% @post_events.each do |post_event| %>
+        <tr>
+          <td>
+          <%= link_to(post_event_path(post_event.id), class: "text-dark") do %>
+            <strong><i class="fa-regular fa-star"></i><span> <%= post_event.title %></span></strong>
+          <% end %>
+          </td>
+          <td><%= post_event.event_date %></td>
+          <td><%= post_event.address %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
-
