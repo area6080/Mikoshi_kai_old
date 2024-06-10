@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-10">
-      <div class="row">
-        <table class="table table-bordered">
-          <thead class="thead-light">
+      <div class="row mt-5">
+        <table class="table matsuri-style">
+          <thead>
             <tr>
-              <th class="col-4">タイトル</th>
-              <th class="col-4">開催日時</th>
+              <th class="col-5">タイトル</th>
+              <th class="col-3">開催日時</th>
               <th class="col-4">住所</th>
             </tr>
           </thead>
@@ -14,7 +14,7 @@
             <% @post_events.each do |post_event| %>
               <tr>
                 <td>
-                <%= link_to(post_event_path(post_event.id), class: "text-dark") do %>
+                <%= link_to(post_event_path(post_event.id), class: "matsuri-style") do %>
                   <strong><i class="fa-regular fa-star"></i><span> <%= post_event.title %></span></strong>
                 <% end %>
                 </td>

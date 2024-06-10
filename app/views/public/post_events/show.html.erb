@@ -2,10 +2,10 @@
   <div class="row justify-content-center">
     <div class="col-6">
       <div class="row mt-2">
-        <table class="table table-borderless">
+        <table class="table table-borderless matsuri-style">
           <tbody>
             <tr>
-              <td><%= image_tag @post_event.get_image(200,200) %></td>
+              <td><%= image_tag @post_event.get_image(200,200), class: "rounded-lg" %></td>
               <td></td>
             </tr>
             <tr>
@@ -21,7 +21,7 @@
               <td><%= @post_event.caption %></td>
             </tr>
             <tr>
-              <td><%= image_tag @post_event.user.get_profile_image(100,100) %></td>
+              <td><%= image_tag @post_event.user.get_profile_image(100,100), class: "rounded-lg" %></td>
               <td><%= @post_event.user.name %></td>
             </tr>
             <tr>

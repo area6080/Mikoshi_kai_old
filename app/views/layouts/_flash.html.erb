@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row w-100 justify-content-center">
     <div class="col-6 text-center">
       <% flash.each do |key, message| %>
-      　<div class="alert alert-<%= key %> my-2"><%= message %></div>
+      　<div class="alert alert-<%= key %>"><%= message %></div>
       <% end %>
     </div>
   </div>
