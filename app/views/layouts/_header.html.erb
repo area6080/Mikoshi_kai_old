@@ -11,8 +11,8 @@
               <%= image_tag('fire.jpg', size: "70x70", class: "rounded-circle") %>
               Administrator
             <% elsif user_signed_in? %>
-              <%= image_tag current_user.get_profile_image(70,70), class: "rounded-circle" %>
-              <%= current_user.name %>
+                <%= image_tag current_user.get_profile_image(70,70), class: "rounded-circle" %>
+                <%= current_user.name %>
             <% else %>
               <%= image_tag('no_image.jpg', size: "60x60", class: "rounded-circle") %>
               Guest
