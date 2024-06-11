@@ -1,0 +1,27 @@
+<h1>Admin::PostEvents#index</h1>
+<p>Find me in app/views/admin/post_events/index.html.erb</p>
+
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th class="col-2">ID</th>
+      <th class="col-4">タイトル</th>
+      <th class="col-4">開催日時</th>
+      <th class="col-2">住所</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post_events.each do |post_event| %>
+      <tr>
+        <td><%= post_event.id %></td>
+        <td>
+        <%= link_to(post_event_path(post_event.id), class: "text-dark") do %>
+          <strong><i class="far fa-flag"></i><span> <%= post_event.title %></span></strong>
+        <% end %>
+        </td>
+        <td><%= post_event.event_date %></td>
+        <td><%= post_event.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

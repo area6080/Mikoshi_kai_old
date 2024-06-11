@@ -1,0 +1,23 @@
+<h1>Admin::Groups#index</h1>
+<p>Find me in app/views/admin/groups/index.html.erb</p>
+
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th class="col-2">ID</th>
+      <th class="col-4">グループ名</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.id %></td>
+        <td>
+        <%= link_to(group_path(group.id), class: "text-dark") do %>
+          <strong><i class="far fa-flag"></i><span> <%= group.name %></span></strong>
+        <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

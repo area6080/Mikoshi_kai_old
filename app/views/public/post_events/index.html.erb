@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="row mt-5">
+        <table class="table matsuri-style">
+          <thead>
+            <tr>
+              <th class="col-5">タイトル</th>
+              <th class="col-3">開催日時</th>
+              <th class="col-4">住所</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @post_events.each do |post_event| %>
+              <tr>
+                <td>
+                <%= link_to(post_event_path(post_event.id), class: "matsuri-style") do %>
+                  <strong><i class="fa-regular fa-star"></i><span> <%= post_event.title %></span></strong>
+                <% end %>
+                </td>
+                <td><%= post_event.event_date %></td>
+                <td><%= post_event.address %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="row mt-2">
+        <%= link_to 'マップに戻る', map_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+</div>
+

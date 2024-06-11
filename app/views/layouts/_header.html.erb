@@ -1,0 +1,48 @@
+<header class="sticky-top border-bottom matsuri-style">
+  <nav class="">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-3">
+          <a class="navbar-brand ml-3" href="/"><%= image_tag('logo-j.jpg', size: "200x70") %></a>
+        </div>
+        <div class="col-4 offset-1 d-flex justify-content-end">
+          <div class="my-auto">
+            <% if admin_signed_in? %>
+              <%= image_tag('fire.jpg', size: "70x70", class: "rounded-circle") %>
+              Administrator
+            <% elsif user_signed_in? %>
+                <%= image_tag current_user.get_profile_image(70,70), class: "rounded-circle" %>
+                <%= current_user.name %>
+            <% else %>
+              <%= image_tag('no_image.jpg', size: "60x60", class: "rounded-circle") %>
+              Guest
+            <% end %>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="row d-flex justify-content-end mr-1">
+            <ul class="nav">
+              <% if admin_signed_in? %>
+                <%= render 'layouts/admin_header' %>
+              <% elsif user_signed_in? %>
+                <%= render 'layouts/user_header' %>
+              <% else %>
+                <%= render 'layouts/before_signin_header' %>
+              <% end %>
+            </ul>
+          </div>
+          <div class="row justify-content-end mr-1 mt-1">
+            <%= form_with url: search_path, method: :get do |f| %>
+            <div class="input-group">
+              <%= f.text_field :word, placeholder: "Search" %>
+              <%= button_tag type: "submit", class: "btn btn-outline-primary btn-sm" do %>
+                <i class="fa-solid fa-magnifying-glass"></i>
+              <% end %>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

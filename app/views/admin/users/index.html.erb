@@ -1,0 +1,27 @@
+<h1>Admin::Users#index</h1>
+<p>Find me in app/views/admin/users/index.html.erb</p>
+
+<table class="table table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th class="col-2">ID</th>
+      <th class="col-3">名前</th>
+      <th class="col-3">メールアドレス</th>
+      <th class="col-4">自己紹介</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td>
+        <%= link_to(mypage_path(user.id), class: "text-dark") do %>
+          <strong><i class="far fa-flag"></i><span> <%= user.name %></span></strong>
+        <% end %>
+        </td>
+        <td><%= user.email %></td>
+        <td><%= user.introduction %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

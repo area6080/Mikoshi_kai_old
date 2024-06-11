@@ -1,0 +1,11 @@
+<div class="container-fluid mt-4">
+  <div class="row">
+    <div id="map" class="col-11"></div>
+    <div class="col-1">
+      <%= link_to 'イベント投稿', new_post_event_path, class: 'btn btn-primary' %>
+      <%= link_to 'イベント一覧', post_events_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
