@@ -1,4 +1,4 @@
-![神輿會](https://github.com/area6080/Mikoshi_Majesty/blob/main/app/assets/images/1.png)
+![神輿會](https://github.com/area6080/Mikoshi_kai/blob/main/app/assets/images/1.png)
 # 神輿會
 ## サイト概要
 #### サイトテーマ
