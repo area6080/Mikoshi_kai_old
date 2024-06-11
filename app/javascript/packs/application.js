@@ -8,7 +8,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
-import '../stylesheets/mikoshi.css'
+import '../stylesheets/mikoshi.scss'
 
 Rails.start()
 Turbolinks.start()
