@@ -21,12 +21,12 @@
             <%= f.text_field :event_date, class: "form-control", placeholder: "開催日時" %>
           </div>
           
-          <div class="input-group mb-3 mt-4">
-            <div class="input-group-prepend">
-              <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-tenge-sign"></i></span>
-            </div>
-            <%= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号から住所を検出しません" %>
-          </div>
+          <!--<div class="input-group mb-3 mt-4">-->
+          <!--  <div class="input-group-prepend">-->
+          <!--    <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-tenge-sign"></i></span>-->
+          <!--  </div>-->
+          <!--  %= text_field_tag :zipcode, nil, class: "form-control", placeholder: "郵便番号から住所を検出しません" %>-->
+          <!--</div>-->
           
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
@@ -43,4 +43,3 @@
     </div>
   </div>
 </div>
-<%= javascript_pack_tag "jpostal",  'data-turbolinks-track': 'reload' %>
