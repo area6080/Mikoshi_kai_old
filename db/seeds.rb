@@ -1,7 +1,12 @@
-Admin.create!(
-  email: "admin@admin",
-  password: "password"
-)
+Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
+  admin.password = ENV['ADMIN_PASSWORD']
+end
+
+# = User.find_or_create_by!(email: "olivia@example.com") do |user|
+#   user.name = "Olivia"
+#   user.password = "password"
+#   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-user1.jpg"), filename:"sample-user1.jpg")
+# end
 
 # PostEvent.find_or_create_by!(title: "Cavello") do |post_event|
 #   post_event.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"), filename:"sample-post1.jpg")
