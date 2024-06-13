@@ -1,4 +1,4 @@
-puts "seedからデータを作成します"
+puts "seedよりデータ作成開始"
 
 Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
   admin.password = ENV['ADMIN_PASSWORD']

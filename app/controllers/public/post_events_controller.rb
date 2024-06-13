@@ -25,7 +25,7 @@ class Public::PostEventsController < ApplicationController
     @post_event = PostEvent.new(post_event_params)
     @post_event.user_id = current_user.id
     if @post_event.save
-      # flash[:notice] = "You have created post_event successfully."
+      flash[:notice] = "イベントを投稿しました!"
       redirect_to post_event_path(@post_event.id)
     else
       redirect_to post_events_path, flash: { error: @post_event.errors.full_messages }
@@ -40,7 +40,7 @@ class Public::PostEventsController < ApplicationController
   def update
     @post_event = PostEvent.find(params[:id])
     if @post_event.update(update_post_event_params)
-      flash[:notice] = "You have updated post_event successfully."
+      flash[:notice] = "イベント内容を更新しました!"
       redirect_to post_event_path(@post_event.id)
     else
       render :edit
@@ -50,7 +50,11 @@ class Public::PostEventsController < ApplicationController
   def destroy
     post_event = PostEvent.find(params[:id])
     post_event.destroy
-    redirect_to post_events_path
+    if admin_signed_in?
+      redirect_to admin_post_events_path
+    else
+      redirect_to post_events_path
+    end
   end
   
   

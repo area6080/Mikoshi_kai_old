@@ -2,8 +2,8 @@ class Public::UsersController < ApplicationController
     # before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def show
-    @user = User.find(params[:id])
-    @post_events = PostEvent.where(@post_event.user_id)
+    @user = current_user
+    @post_events = PostEvent.where(user_id: @user.id)
   end
 
   def edit
