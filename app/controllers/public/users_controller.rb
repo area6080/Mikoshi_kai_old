@@ -2,8 +2,8 @@ class Public::UsersController < ApplicationController
     # before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   
   def show
-    @user = current_user
-    @post_events = @user.post_events
+    @user = User.find(params[:id])
+    @post_events = PostEvent.where(@post_event.user_id)
   end
 
   def edit
@@ -23,7 +23,11 @@ class Public::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to new_user_registration_path
+    if admin_signed_in?
+      redirect_to admin_users_path
+    else
+      redirect_to new_user_registration_path
+    end
   end
   
     private

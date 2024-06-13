@@ -15,7 +15,7 @@ async function initMap() {
   // クラウドカスタマイズ機能を使用する
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.687295, lng: 135.525809 },
-    zoom: 11,
+    zoom: 9,
     mapId: "12e54403ce86cc3",
     mapTypeControl: false,
 

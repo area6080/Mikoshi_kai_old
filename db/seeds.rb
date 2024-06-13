@@ -1,3 +1,5 @@
+puts "seedからデータを作成します"
+
 Admin.find_or_create_by!(email: ENV['ADMIN_EMAIL']) do |admin|
   admin.password = ENV['ADMIN_PASSWORD']
 end
@@ -48,3 +50,5 @@ PostEvent.find_or_create_by!(title: "なんとかだんじり祭り") do |post_e
   post_event.event_date = "2024/09/01"
   post_event.address = "大阪府岸和田市岸城町" 
 end
+
+puts "seedの実行完了"
