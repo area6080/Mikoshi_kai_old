@@ -15,15 +15,15 @@ footer {
 
 .main-visual {
   width: 80%;
-  height: 600px;
-  background-image: url('main_v.jpg');
+  height: 750px;
+  background-image: url('main_v.png');
   background-size: cover;
 }
 
 .second-visual {
   width: 70%;
   height: 600px;
-  background-image: url('second_v.jpg');
+  background-image: url('second_v.png');
   background-size: contain;
   background-repeat: no-repeat;
   margin-left: 150px;
@@ -45,7 +45,7 @@ footer {
   text-align: center;
 }
 
-.vertical {
+.map-btn {
   writing-mode: vertical-rl;
 }
 
