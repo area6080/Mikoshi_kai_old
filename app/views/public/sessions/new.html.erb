@@ -1,10 +1,10 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row d-flex justify-content-center">
     <div class="col-6 text-center mt-5">
       <h4>登録済みの方はこちらからログイン</h4>
     </div>
   </div>
-  <div class="row justify-content-center">
+  <div class="row d-flex justify-content-center">
     <div class="col-6">
       <%= form_with model: @user, url: user_session_path do |f| %>
         <table class="table table-borderless matsuri-style">
@@ -26,10 +26,13 @@
       <% end %>
     </div>
   </div>
-  <div class="row justify-content-center my-3">
+  <div class="row d-flex justify-content-center my-3">
     <div class="col-6 text-center">
       <h6>会員登録がお済みでない方</h6>
       <%= link_to "こちら", new_user_registration_path, class: "underline" %>から新規登録を行なってください。
+    </div>
+    <div class="mt-2">
+      <%= render "public/shared/error_messages", resource: resource %>
     </div>
   </div>
 </div>

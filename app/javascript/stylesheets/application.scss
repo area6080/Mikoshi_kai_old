@@ -1,4 +1,19 @@
-@use '~bootstrap/scss/bootstrap';
+@use '~bootstrap/scss/bootstrap' with (
+    $primary: #3450a4,
+    // 瑠璃色
+    $secondary: #887894,
+    // 紫苑色
+    $success: #247c50,
+    // 常盤色
+    $info: #74509c,
+    // すみれいろ
+    $danger: #b82044,
+    // 紅色
+    $warning: #f4b000,
+    // 山吹色
+);
+// !defaultフラグが使用されている変数のみを変更できる
+
 
 #map {
   width: 100%;
