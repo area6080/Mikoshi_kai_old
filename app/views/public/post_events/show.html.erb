@@ -1,13 +1,12 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row d-flex justify-content-center mt-3">
     <div class="col-6">
+      <div class="row" style="margin-left: 50px;">
+        <%= image_tag @post_event.get_image(200,200), class: "rounded-lg" %>
+      </div>
       <div class="row mt-2">
         <table class="table table-borderless matsuri-style">
           <tbody>
-            <tr>
-              <td><%= image_tag @post_event.get_image(200,200), class: "rounded-lg" %></td>
-              <td></td>
-            </tr>
             <tr>
               <td>イベント名</td>
               <td><%= @post_event.title %></td>
@@ -22,14 +21,18 @@
             </tr>
             <tr>
               <td><%= image_tag @post_event.user.get_profile_image(100,100), class: "rounded-lg" %></td>
-              <td><%= @post_event.user.name %></td>
+              <td>
+                <%= link_to user_path(@post_event.user.id), class: "matsuri-style" do %>
+                  <strong><i class="fa-regular fa-user"></i><span> <%= @post_event.user.name %></span></strong>
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td></td>
               <td>
                 <% if @post_event.user == current_user %>
                   <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
-                  <%= link_to "削除", post_event_path(@post_event), method: :delete,class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
+                  <%= link_to "削除", post_event_path(@post_event), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
                 <% end %>
                 <!--admin_signin?-->
                 <!--削除-->
@@ -38,23 +41,41 @@
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="col-6">
       <div class="row mt-2">
-        <p>コメント件数：<%= @post_event.post_comments.count %></p>
-        <% @post_event.post_comments.each do |post_comment| %>
-          <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-          <%= post_comment.user.name %>
-          <%= post_comment.comment %>
-      
-          <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete %>
-          <% end %>
+        <%= form_with model: [@post_event, @post_comment] do |f| %>
+          <%= f.text_area :comment, size: "50x3", placeholder: "コメントをどうぞ！" %>
+          <%= f.submit "送信", class: "btn btn-primary" %>
         <% end %>
       </div>
       <div class="row mt-2">
-        <%= form_with model: [@post_event, @post_comment] do |f| %>
-          <%= f.text_area :comment, rows: '3', placeholder: "コメントをどうぞ" %>
-          <%= f.submit "送信" %>
-        <% end %>
+        <p>コメント件数：<%= @post_event.post_comments.count %></p>
+
+        <table class="table table-borderless matsuri-style">
+          <thead>
+            <tr>
+              <td class="col-6"></td>
+              <td class="col-1"></td>
+              <td class="col-3"></td>
+              <td class="col-1"></td>
+            </tr>
+          </thead>
+          <tbody>
+            <% @post_event.post_comments.each do |post_comment| %>
+            <tr>
+              <td><%= post_comment.comment %></td>
+              <td><%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %></td>
+              <td><%= post_comment.user.name %></td>
+              <td>
+                <% if post_comment.user == current_user %>
+                <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

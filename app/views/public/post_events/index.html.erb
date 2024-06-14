@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row d-flex justify-content-center">
     <div class="col-10">
       <div class="row mt-5">
         <table class="table matsuri-style">
@@ -14,7 +14,7 @@
             <% @post_events.each do |post_event| %>
               <tr>
                 <td>
-                <%= link_to(post_event_path(post_event.id), class: "matsuri-style") do %>
+                <%= link_to post_event_path(post_event.id), class: "matsuri-style" do %>
                   <strong><i class="fa-regular fa-star"></i><span> <%= post_event.title %></span></strong>
                 <% end %>
                 </td>

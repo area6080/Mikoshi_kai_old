@@ -18,8 +18,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root 'homes#top'
-    resources :users, only: [:edit, :update, :destroy]
-    get 'mypage' => 'users#show', as: 'mypage'
+    resources :users, only: [:show, :edit, :update, :destroy]
     resources :groups, except: [:index] do
       resource :participation, only: [:create, :destroy]
     end

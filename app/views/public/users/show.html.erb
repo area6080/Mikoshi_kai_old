@@ -1,47 +1,54 @@
 <div class="container">
   <div class="row d-flex justify-content-center" style="margin-top: 50px;">
-    <div class="col-2 d-flex justify-content-center">
+    <div class="col-4 d-flex justify-content-end">
       <%= image_tag @user.get_profile_image(100,100), class: "rounded-lg" %>
     </div>
-    <div class="col-4">
+    <div class="col-6">
       <table class="table table-borderless matsuri-style">
+        <thead>
+          <tr>
+            <th class="col-3"></th>
+            <th class="col-9"></th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
-            <td>name</td>
+            <td>Name</td>
             <td><%= @user.name %></td>
           </tr>
           <tr>
-            <td>introduction</td>
+            <td>Introduction</td>
             <td><%= @user.introduction %></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="col-2">
+    <div class="col-2 d-flex align-items-end">
       <% if @user == current_user %>
         <%= link_to "プロフィール編集", edit_user_path(@user),class:'btn btn-info' %><br>
-        <%= link_to "退会", user_path(@user), method: :delete,class:'btn btn-danger mt-2', "data-confirm" => "本当に退会しますか?" %>
       <% end %>
     </div>
   </div>
-  <div class="row">
-    <table class="table matsuri-style">
-      <thead>
-        <h6>イベント一覧</h6>
-      </thead>
-      <tbody>
-        <% @post_events.each do |post_event| %>
-        <tr>
-          <td>
-          <%= link_to(post_event_path(post_event.id), class: "matsuri-style") do %>
-            <strong><i class="fa-regular fa-star"></i><span> <%= post_event.title %></span></strong>
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-10">
+      <table class="table matsuri-style">
+        <thead>
+          <h6>イベント一覧</h6>
+        </thead>
+        <tbody>
+          <% @post_events.each do |post_event| %>
+          <tr>
+            <td>
+            <%= link_to(post_event_path(post_event.id), class: "matsuri-style") do %>
+              <strong><i class="fa-regular fa-star"></i><span> <%= post_event.title %></span></strong>
+            <% end %>
+            </td>
+            <td><%= post_event.event_date %></td>
+            <td><%= post_event.address %></td>
+          </tr>
           <% end %>
-          </td>
-          <td><%= post_event.event_date %></td>
-          <td><%= post_event.address %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
