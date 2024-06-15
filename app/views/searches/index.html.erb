@@ -1,2 +1,25 @@
-<h1>Searches#index</h1>
-<p>Find me in app/views/searches/index.html.erb</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10">
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="col-4 d-flex justify-content-center">
+          <h4><%= @model %>s search for <%= @word %></h4>
+        </div>
+      </div>
+      
+      <div class="row d-flex justify-content-center mt-5">
+      <% if @model == "User" %>
+        <%= render 'searches/user', users: @result %>
+      <% else %>
+        <%= render 'searches/event', post_events: @result %>
+      <% end %>
+      </div>
+
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="col-4 d-flex justify-content-center">
+          <%= link_to 'マップに戻る', map_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

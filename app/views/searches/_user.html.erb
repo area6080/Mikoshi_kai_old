@@ -1,0 +1,22 @@
+<table class="table matsuri-style">
+  <thead>
+    <tr>
+      <th class="col-4">名前</th>
+      <th class="col-3">メールアドレス</th>
+      <th class="col-5">自己紹介</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td>
+        <%= link_to(user_path(user.id), class: "matsuri-style") do %>
+          <strong><i class="fa-regular fa-user"></i><span> <%= user.name %></span></strong>
+        <% end %>
+        </td>
+        <td><%= user.email %></td>
+        <td><%= user.introduction %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
