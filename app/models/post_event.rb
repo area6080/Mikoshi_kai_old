@@ -21,4 +21,8 @@ class PostEvent < ApplicationRecord
     image.variant(resize_to_limit: [width, height]).processed
     # image.variant(resize_to_fill: [width, height]).processed
   end
+  
+  def self.looks(word)
+    PostEvent.where("title LIKE?","%#{word}%")
+  end
 end

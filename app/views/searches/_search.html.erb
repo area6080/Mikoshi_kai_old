@@ -1,0 +1,23 @@
+<% if admin_signed_in? %>
+  <%= form_with url: search_path, method: :get do |f| %>
+  <div class="input-group">
+    <%= f.select :model, options_for_select([['User'], ['Event']]), {}, class: "form-control" %>
+    <%= f.text_field :word, placeholder: "Search" %>
+    <%= button_tag type: "submit", class: "btn btn-outline-primary btn-sm" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
+
+<% if user_signed_in? %>
+  <%= form_with url: search_path, method: :get do |f| %>
+  <div class="input-group">
+    <%= f.select :model, options_for_select([['User'], ['Event']]), {}, class: "form-control" %>
+    <%= f.text_field :word, placeholder: "Search" %>
+    <%= button_tag type: "submit", class: "btn btn-outline-primary btn-sm" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
