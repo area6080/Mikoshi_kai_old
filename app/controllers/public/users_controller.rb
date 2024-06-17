@@ -32,11 +32,7 @@ class Public::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    if admin_signed_in?
-      redirect_to admin_users_path
-    else
-      redirect_to new_user_registration_path
-    end
+    redirect_to new_user_registration_path
   end
   
     private

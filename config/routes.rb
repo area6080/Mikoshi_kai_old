@@ -11,9 +11,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'homes#top', as: 'top'
-    resources :users, only: [:index, :show]
-    resources :post_events, only: [:index, :show]
-    resources :groups, only: [:index, :show]
+    resources :users, only: [:index, :show, :destroy]
+    resources :post_events, only: [:index, :show, :destroy]
+    resources :groups, only: [:index, :show, :destroy]
   end
 
   scope module: :public do

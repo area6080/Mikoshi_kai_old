@@ -1,10 +1,16 @@
 <div class="container">
   <div class="row d-flex justify-content-center mt-5">
     <div class="col-2">
-      <%= image_tag @post_event.get_image(100,100), class: "rounded-lg" %>
+      <%= image_tag @post_event.get_image(180,180), class: "rounded-lg" %>
     </div>
-    <div class="col-4">
+    <div class="col-6">
       <table class="table table-borderless matsuri-style">
+        <thead>
+          <tr>
+            <th class="col-4"></th>
+            <th class="col-8"></th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td>イベント名</td>
@@ -19,8 +25,8 @@
             <td><%= @post_event.caption %></td>
           </tr>
           <tr>
-            <td>投稿ユーザー画像</td>
-            <td><%= image_tag @post_event.user.get_profile_image(100,100) %></td>
+            <td>投稿ユーザー</td>
+            <td><%= image_tag @post_event.user.get_profile_image(100,100), class: "rounded-lg" %></td>
           </tr>
           <tr>
             <td>ユーザーネーム</td>
