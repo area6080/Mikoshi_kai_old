@@ -25,4 +25,8 @@ class PostEvent < ApplicationRecord
   def self.looks(word)
     PostEvent.where("title LIKE?","%#{word}%")
   end
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
 end

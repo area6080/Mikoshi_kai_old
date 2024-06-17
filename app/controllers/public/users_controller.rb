@@ -5,7 +5,12 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post_events = PostEvent.where(user_id: @user.id)
+    
+    favs = Favorite.where(user_id: @user.id).pluck(:post_event_id)
+    @fav_events = PostEvent.where(id: favs)
+    # Railsのwhereメソッドでは整数の配列を渡すことはできない、id: favs
   end
+
 
   def edit
     @user = User.find(params[:id])

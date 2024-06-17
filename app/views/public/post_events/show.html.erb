@@ -2,10 +2,16 @@
   <div class="row d-flex justify-content-center mt-3">
     <div class="col-6">
       <div class="row" style="margin-left: 50px;">
-        <%= image_tag @post_event.get_image(200,200), class: "rounded-lg" %>
+        <%= image_tag @post_event.get_image(180,180), class: "rounded-lg" %>
       </div>
-      <div class="row mt-2">
+      <div class="row mt-3">
         <table class="table table-borderless matsuri-style">
+          <thead>
+            <tr>
+              <th class="col-4"></th>
+              <th class="col-8"></th>
+            </tr>
+          </thead>
           <tbody>
             <tr>
               <td>イベント名</td>
@@ -16,11 +22,15 @@
               <td><%= @post_event.event_date %></td>
             </tr>
             <tr>
+              <td>開催場所</td>
+              <td><%= @post_event.address %></td>
+            </tr>
+            <tr>
               <td>説明</td>
               <td><%= @post_event.caption %></td>
             </tr>
             <tr>
-              <td><%= image_tag @post_event.user.get_profile_image(100,100), class: "rounded-lg" %></td>
+              <td>投稿者</td>
               <td>
                 <%= link_to user_path(@post_event.user.id), class: "matsuri-style" do %>
                   <strong><i class="fa-regular fa-user"></i><span> <%= @post_event.user.name %></span></strong>
@@ -28,14 +38,24 @@
               </td>
             </tr>
             <tr>
-              <td></td>
               <td>
                 <% if @post_event.user == current_user %>
                   <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
                   <%= link_to "削除", post_event_path(@post_event), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
                 <% end %>
-                <!--admin_signin?-->
-                <!--削除-->
+              </td>
+              <td><%= image_tag @post_event.user.get_profile_image(70,70), class: "rounded-lg" %></td>
+            </tr>
+            <tr>
+              <td class="d-flex justify-content-end">
+                Total <%= @post_event.favorites.count %> fav
+              </td>
+              <td>
+                <% if @post_event.favorited_by?(current_user) %>
+                  <%= link_to "お気に入りから外す", post_event_favorite_path(@post_event), method: :delete, remote: true, class: "btn btn-secondary" %>
+                <% else %>
+                  <%= link_to "お気に入りに追加", post_event_favorite_path(@post_event), method: :post, remote: true, class: "btn btn-danger" %>
+                <% end %>
               </td>
             </tr>
           </tbody>

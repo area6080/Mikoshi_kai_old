@@ -51,4 +51,12 @@ PostEvent.find_or_create_by!(title: "なんとかだんじり祭り") do |post_e
   post_event.address = "大阪府岸和田市岸城町" 
 end
 
+PostEvent.find_or_create_by!(title: "琵琶湖恐竜まつり") do |post_event|
+  post_event.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/dino.jpg"), filename:"danjiri.jpg")
+  post_event.user = galileo
+  post_event.caption = "原寸大の恐竜が琵琶湖に出現"
+  post_event.event_date = "2024/11/11"
+  post_event.address = "滋賀県彦根市大藪町" 
+end
+
 puts "seedの実行完了"
