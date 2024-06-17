@@ -8,6 +8,7 @@ json.data do
       end
       json.image url_for(post_event.image)
       json.title post_event.title
+      json.date post_event.event_date
       json.caption post_event.caption
       json.address post_event.address
       json.latitude post_event.latitude

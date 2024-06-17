@@ -32,14 +32,7 @@
             </ul>
           </div>
           <div class="row d-flex justify-content-end mr-1 mt-1">
-            <%= form_with url: search_path, method: :get do |f| %>
-            <div class="input-group">
-              <%= f.text_field :word, placeholder: "Search" %>
-              <%= button_tag type: "submit", class: "btn btn-outline-primary btn-sm" do %>
-                <i class="fa-solid fa-magnifying-glass"></i>
-              <% end %>
-            </div>
-            <% end %>
+            <%= render 'searches/search' %>
           </div>
         </div>
       </div>

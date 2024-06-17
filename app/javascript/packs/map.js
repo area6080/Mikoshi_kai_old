@@ -11,12 +11,11 @@ async function initMap() {
   const {AdvancedMarkerElement} = await google.maps.importLibrary("marker")
   
   //。デフォルトを大阪城に　数値が小さいほうがロング 一回のクリック分
-  // クラウドカスタマイズ機能を使用する
   map = new Map(document.getElementById("map"), {
     center: { lat: 34.687295, lng: 135.525809 },
-    zoom: 9,
+    zoom: 7,
     mapId: "12e54403ce86cc3",
-    mapTypeControl: false,
+    streetViewControl: false,
 
   });
   
@@ -35,6 +34,7 @@ async function initMap() {
       const userImage = item.user.image;
       const userName = item.user.name;
       const postImage = item.image;
+      const date = item.date;
       const address = item.address;
       const caption = item.caption;
 
@@ -47,19 +47,20 @@ async function initMap() {
       
       const contentString = `
         <div class="information container p-0">
-          <div class="mb-3">
+          <div class="mb-2">
             <img class="thumbnail" src="${postImage}" width="220" loading="lazy">
           </div>
-          <div>
-            <h1 class="h5 font-weight-bold">${shopName}</h1>
-            <p class="text-muted">${address}</p>
+          <div class="ml-1">
+            <h1 class="h5 font-weight-bold text-dark">${shopName}</h1>
+            <p class="text-dark">${date}</p>
+            <p class="text-dark">${address}</p>
           </div>
-          <div class="mb-3 d-flex align-items-center">
-            <img class="rounded-circle mr-2" src="${userImage}" width="40" height="40">
-            <p class="lead m-0 font-weight-bold">${userName}</p>
+          <div class="mb-1 d-flex align-items-center">
+            <img class="rounded-circle mx-1" src="${userImage}" width="40" height="40">
+            <p class="font-weight-bold m-0 text-dark">${userName}</p>
           </div>
-          <div>
-            <p>${caption}</p>
+          <div class="ml-1">
+            <p class="text-dark">${caption}</p>
           </div>
         </div>
       `;
@@ -88,3 +89,4 @@ async function initMap() {
   }
 }
 initMap()
+
