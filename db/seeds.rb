@@ -27,7 +27,7 @@ galileo = User.find_or_create_by!(email: "sss@sss") do |user|
 end
 
 
-PostEvent.find_or_create_by!(title: "海上神輿") do |post_event|
+PostEvent.find_or_create_by!(title: "海上神輿祭") do |post_event|
   post_event.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/torii.jpg"), filename:"torii.jpg")
   post_event.user = onihei
   post_event.caption = "左足が沈む前に右足を出しましょう！"
