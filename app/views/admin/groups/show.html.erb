@@ -6,6 +6,12 @@
     </div>
     <div class="col-4">
       <table class="table table-borderless matsuri-style">
+        <thead>
+          <tr>
+            <th class="col-4"></th>
+            <th class="col-8"></th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td>グループ名</td>
@@ -17,7 +23,7 @@
   </div>
   <div class="row d-flex justify-content-center mt-3">
     <div class="col-4 d-flex justify-content-center">
-      <%= link_to "管理者権限で削除する", group_path(@group), method: :delete, class:'btn btn-block btn-danger mt-1', "data-confirm" => "本当に削除しますか?" %>
+      <%= link_to "管理者権限で削除する", admin_group_path(@group), method: :delete, class:'btn btn-block btn-danger mt-1', "data-confirm" => "本当に削除しますか?" %>
     </div>
   </div>
 </div>
