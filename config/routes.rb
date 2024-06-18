@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     resources :users, only: [:show, :edit, :update, :destroy]
-    resources :groups, except: [:index] do
+    resources :groups do
       resource :participation, only: [:create, :destroy]
     end
     resources :post_events do
