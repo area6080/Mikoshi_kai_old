@@ -29,8 +29,7 @@
 
 
 ## 設計書
-### ER図
-![ER図](https://github.com/area6080/Mikoshi_kai/blob/feature-readme/app/assets/images/ER_view.jpg)
+後ほど作成予定
 
 ## 開発環境
 * OS：Linux(CentOS)
