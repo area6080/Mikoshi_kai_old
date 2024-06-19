@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :post_events do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
+      resource :union, only: [:show, :create, :destroy]
     end
   end
 
