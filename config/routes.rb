@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/' => 'homes#top', as: 'top'
     resources :users, only: [:index, :show, :destroy]
     resources :post_events, only: [:index, :show, :destroy]
+    resources :post_comments, only: [:index, :show, :destroy]
     resources :groups, only: [:index, :show, :destroy]
   end
 

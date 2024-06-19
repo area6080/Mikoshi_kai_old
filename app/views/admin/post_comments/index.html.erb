@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-10">
+      <div class="row mt-5">
+        <table class="table matsuri-style">
+          <thead>
+            <tr>
+              <th class="col-1">ID</th>
+              <th class="col-3">イベント名</th>
+              <th class="col-5">コメント</th>
+              <th class="col-3">管理者用</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @post_comments.each do |post_comment| %>
+              <tr>
+                <td><%= post_comment.id %></td>
+                <td><%= post_comment.post_event.title %></td>
+                <td><%= post_comment.comment %></td>
+                <td>
+                  <%= link_to "削除", admin_post_comment_path(post_comment), method: :delete, class:'btn btn-danger mt-1', "data-confirm" => "本当に削除しますか?" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="row d-flex justify-content-center mt-2">
+        <div class="col-4 d-flex justify-content-center">
+          <%= link_to 'マップに戻る', map_path, class: 'btn btn-primary' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
