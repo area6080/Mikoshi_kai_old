@@ -53,11 +53,7 @@ class Public::PostEventsController < ApplicationController
   def destroy
     post_event = PostEvent.find(params[:id])
     post_event.destroy
-    if admin_signed_in?
-      redirect_to admin_post_events_path
-    else
-      redirect_to user_path(current_user)
-    end
+    redirect_to user_path(current_user)
   end
   
   

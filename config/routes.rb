@@ -11,20 +11,22 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/' => 'homes#top', as: 'top'
-    resources :users, only: [:index, :show]
-    resources :post_events, only: [:index, :show]
-    resources :groups, only: [:index, :show]
+    resources :users, only: [:index, :show, :destroy]
+    resources :post_events, only: [:index, :show, :destroy]
+    resources :post_comments, only: [:index, :show, :destroy]
+    resources :groups, only: [:index, :show, :destroy]
   end
 
   scope module: :public do
     root 'homes#top'
     resources :users, only: [:show, :edit, :update, :destroy]
-    resources :groups, except: [:index] do
+    resources :groups do
       resource :participation, only: [:create, :destroy]
     end
     resources :post_events do
       resources :post_comments, only: [:create, :destroy]
       resource :favorite, only: [:create, :destroy]
+      resource :union, only: [:show, :create, :destroy]
     end
   end
 

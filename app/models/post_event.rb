@@ -3,6 +3,7 @@ class PostEvent < ApplicationRecord
   belongs_to :user
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :unions, dependent: :destroy
   
   has_one_attached :image
   
@@ -28,5 +29,9 @@ class PostEvent < ApplicationRecord
   
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
+  end
+  
+  def join_in?(user)
+    unions.exists?(user_id: user.id)
   end
 end

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row d-flex justify-content-center mt-3">
-    <div class="col-6">
+    <div class="col-7">
       <div class="row" style="margin-left: 50px;">
         <%= image_tag @post_event.get_image(180,180), class: "rounded-lg" %>
       </div>
@@ -40,63 +40,43 @@
             <tr>
               <td>
                 <% if @post_event.user == current_user %>
+                
                   <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
                   <%= link_to "削除", post_event_path(@post_event), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
                 <% end %>
               </td>
-              <td><%= image_tag @post_event.user.get_profile_image(70,70), class: "rounded-lg" %></td>
+              <td><%= image_tag @post_event.user.get_profile_image(50,50), class: "rounded-lg" %></td>
             </tr>
             <tr>
-              <td class="d-flex justify-content-end">
-                Total <%= @post_event.favorites.count %> fav
-              </td>
               <td>
                 <% if @post_event.favorited_by?(current_user) %>
                   <%= link_to "お気に入りから外す", post_event_favorite_path(@post_event), method: :delete, remote: true, class: "btn btn-secondary" %>
                 <% else %>
-                  <%= link_to "お気に入りに追加", post_event_favorite_path(@post_event), method: :post, remote: true, class: "btn btn-danger" %>
+                  <%= link_to "お気に入りに追加", post_event_favorite_path(@post_event), method: :post, remote: true, class: "btn btn-warning" %>
                 <% end %>
+              </td>
+              <td class="d-flex justify-content-start">
+                Total <%= @post_event.favorites.count %> fav
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <% if @post_event.join_in?(current_user) %>
+                  <%= link_to "メンバーから退出", post_event_union_path(@post_event), method: :delete, class: "btn btn-secondary" %>
+                <% else %>
+                  <%= link_to "メンバーに参加する", post_event_union_path(@post_event), method: :post, class: "btn btn-warning" %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to "参加中のメンバー", post_event_union_path(@post_event), class: "btn btn-primary" %>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="col-6">
-      <div class="row mt-2">
-        <%= form_with model: [@post_event, @post_comment] do |f| %>
-          <%= f.text_area :comment, size: "50x3", placeholder: "コメントをどうぞ！" %>
-          <%= f.submit "送信", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-      <div class="row mt-2">
-        <p>コメント件数：<%= @post_event.post_comments.count %></p>
-
-        <table class="table table-borderless matsuri-style">
-          <thead>
-            <tr>
-              <td class="col-6"></td>
-              <td class="col-1"></td>
-              <td class="col-3"></td>
-              <td class="col-1"></td>
-            </tr>
-          </thead>
-          <tbody>
-            <% @post_event.post_comments.each do |post_comment| %>
-            <tr>
-              <td><%= post_comment.comment %></td>
-              <td><%= image_tag post_comment.user.get_profile_image(50,50), class: "rounded-circle" %></td>
-              <td><%= post_comment.user.name %></td>
-              <td>
-                <% if post_comment.user == current_user %>
-                <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
-                <% end %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+    <div class="col-5">
+      <%= render 'comment', post_event: @post_event, post_comment: @post_comment %>
     </div>
   </div>
 </div>
