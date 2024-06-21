@@ -1,7 +1,7 @@
 class Public::PostEventsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
-  
+
   def index
     respond_to do |format|
       format.html do
@@ -12,7 +12,7 @@ class Public::PostEventsController < ApplicationController
       end
     end
   end
-  
+
   def new
     @post_event = PostEvent.new
   end
@@ -20,6 +20,7 @@ class Public::PostEventsController < ApplicationController
   def show
     @post_event = PostEvent.find(params[:id])
     @post_comment = PostComment.new
+    @post_comments = @post_event.post_comments.latest
   end
 
   def create
@@ -55,8 +56,8 @@ class Public::PostEventsController < ApplicationController
     post_event.destroy
     redirect_to user_path(current_user)
   end
-  
-  
+
+
   private
 
   def post_event_params
@@ -66,7 +67,7 @@ class Public::PostEventsController < ApplicationController
   def update_post_event_params
     params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :image)
   end
-  
+
   def is_matching_login_user
     post_event = PostEvent.find(params[:id])
     user = User.find(post_event.user_id)
