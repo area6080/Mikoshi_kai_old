@@ -1,5 +1,6 @@
 class Public::ParticipationsController < ApplicationController
   before_action :authenticate_user!
+  
   def create
     @group = Group.find(params[:group_id])
     participation = @group.participations.new(user_id: current_user.id)

@@ -52,8 +52,7 @@ class Public::PostEventsController < ApplicationController
   end
 
   def destroy
-    post_event = PostEvent.find(params[:id])
-    post_event.destroy
+    PostEvent.find(params[:id]).destroy
     redirect_to user_path(current_user)
   end
 

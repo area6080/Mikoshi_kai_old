@@ -1,5 +1,6 @@
 class Admin::PostEventsController < ApplicationController
   before_action :authenticate_admin!
+  
   def index
     @post_events = PostEvent.all
   end
@@ -9,8 +10,7 @@ class Admin::PostEventsController < ApplicationController
   end
   
   def destroy
-    post_event = PostEvent.find(params[:id])
-    post_event.destroy
+    PostEvent.find(params[:id]).destroy
     redirect_to admin_post_events_path
   end
 end
