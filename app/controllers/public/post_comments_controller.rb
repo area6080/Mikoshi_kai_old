@@ -1,5 +1,5 @@
 class Public::PostCommentsController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
   
   def create
     post_event = PostEvent.find(params[:post_event_id])

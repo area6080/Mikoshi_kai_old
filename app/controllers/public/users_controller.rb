@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
     
     favs = Favorite.where(user_id: @user.id).pluck(:post_event_id)
     @fav_events = PostEvent.new
-    # nil回避のため入れてみた
+    # nil回避のため入れた
     @fav_events = PostEvent.where(id: favs)
     # Railsのwhereメソッドでは整数の配列を渡すことはできない→id: favs
   end
@@ -31,8 +31,7 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-    user = User.find(params[:id])
-    user.destroy
+    User.find(params[:id]).destroy
     redirect_to new_user_registration_path
   end
   
@@ -49,6 +48,7 @@ class Public::UsersController < ApplicationController
     end
   end
   # 他人のユーザー編集画面に入るのを無効化
+  
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
