@@ -20,7 +20,8 @@ class Public::PostEventsController < ApplicationController
   def show
     @post_event = PostEvent.find(params[:id])
     @post_comment = PostComment.new
-    @post_comments = @post_event.post_comments.latest
+    @post_comments = PostComment.preload(:user).order(created_at: :desc)
+    # @post_comments = PostComment.eager_load(:user).order('created_at DESC') has_oneの場合？
   end
 
   def create
