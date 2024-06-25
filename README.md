@@ -32,7 +32,7 @@
 
 ## 設計書
 ### ER図
-![ER図](https://github.com/area6080/Mikoshi_kai/assets/161906317/44346b6a-8bcb-4778-a5f3-9f4f3c3cbf31)
+![ER図](https://github.com/area6080/Mikoshi_kai/blob/feature-readme/app/assets/images/ER_view.jpg)
 
 ## 開発環境
 * OS：Linux(CentOS)
