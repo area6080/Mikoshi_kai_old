@@ -4,8 +4,4 @@ class PostComment < ApplicationRecord
 
   validates :comment, presence: true
   
-  scope :latest, -> {order(created_at: :desc)}
-  # def self.latest
-  #   order(created_at: :desc)
-  # end
 end
