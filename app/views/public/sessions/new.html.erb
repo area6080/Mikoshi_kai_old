@@ -1,5 +1,8 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
+    <div class="mt-2">
+      <%= render "public/shared/error_messages", resource: resource %>
+    </div>
     <div class="col-6 text-center mt-5">
       <h4>登録済みの方はこちらからログイン</h4>
     </div>
@@ -30,9 +33,6 @@
     <div class="col-6 text-center">
       <h6>会員登録がお済みでない方</h6>
       <%= link_to "こちら", new_user_registration_path, class: "underline" %>から新規登録を行なってください。
-    </div>
-    <div class="mt-2">
-      <%= render "public/shared/error_messages", resource: resource %>
     </div>
   </div>
 </div>
