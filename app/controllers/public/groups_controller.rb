@@ -1,18 +1,18 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
-  
+
   def index
     @groups = Group.all
   end
-  
+
   def new
     @group = Group.new
   end
 
   def show
     @group = Group.find(params[:id])
-    
+
     join = Participation.where(group_id: @group.id).pluck(:user_id)
     @members = User.new
     @members = User.where(id: join)
@@ -47,15 +47,14 @@ class Public::GroupsController < ApplicationController
   end
 
   private
-
-  def group_params
-    params.require(:group).permit(:name)
-  end
-  
-  def is_matching_login_user
-    @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
-      redirect_to groups_path
+    def group_params
+      params.require(:group).permit(:name)
     end
-  end
+
+    def is_matching_login_user
+      @group = Group.find(params[:id])
+      unless @group.owner_id == current_user.id
+        redirect_to groups_path
+      end
+    end
 end
