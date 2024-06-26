@@ -1,83 +1,62 @@
 <div class="container">
-  <div class="row d-flex justify-content-center mt-3">
-    <div class="col-7">
-      <div class="row" style="margin-left: 50px;">
-        <%= image_tag @post_event.get_image(180,180), class: "rounded-lg" %>
+  <div class="row d-flex justify-content-center">
+    <div class="col-10">
+      <div class="row mt-5">
+        <div class="col-4 d-flex justify-content-center">
+          <%= image_tag @post_event.get_image(200,200), class: "rounded-lg" %>
+        </div>
+        <div class="col-7 offset-1">
+          <div class="row">
+            <h3><strong><%= @post_event.title %></strong></h3>
+          </div>
+          <div class="row mt-1">
+            <h5><%= @post_event.event_date %></h5>
+          </div>
+          <div class="row">
+            <table class="table table-borderless matsuri-style">
+              <thead>
+                <tr>
+                  <th class="col-3"></th>
+                  <th class="col-9"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>開催場所</td>
+                  <td><%= @post_event.address %></td>
+                </tr>
+                <tr>
+                  <td>説明</td>
+                  <td><%= @post_event.caption %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <%= image_tag @post_event.user.get_profile_image(70,70), class: "rounded-circle" %>
+            </div>
+            <div class="col-4 d-flex align-items-center pl-0">
+              <%= link_to user_path(@post_event.user.id), class: "matsuri-style" do %>
+                <strong><i class="fa-regular fa-user"></i><span> <%= @post_event.user.name %></span></strong>
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row mt-3">
-        <table class="table table-borderless matsuri-style">
-          <thead>
-            <tr>
-              <th class="col-4"></th>
-              <th class="col-8"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>イベント名</td>
-              <td><%= @post_event.title %></td>
-            </tr>
-            <tr>
-              <td>開催日時</td>
-              <td><%= @post_event.event_date %></td>
-            </tr>
-            <tr>
-              <td>開催場所</td>
-              <td><%= @post_event.address %></td>
-            </tr>
-            <tr>
-              <td>説明</td>
-              <td><%= @post_event.caption %></td>
-            </tr>
-            <tr>
-              <td>投稿者</td>
-              <td>
-                <%= link_to user_path(@post_event.user.id), class: "matsuri-style" do %>
-                  <strong><i class="fa-regular fa-user"></i><span> <%= @post_event.user.name %></span></strong>
-                <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <% if @post_event.user == current_user %>
-                
-                  <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
-                  <%= link_to "削除", post_event_path(@post_event), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
-                <% end %>
-              </td>
-              <td><%= image_tag @post_event.user.get_profile_image(50,50), class: "rounded-lg" %></td>
-            </tr>
-            <tr>
-              <td>
-                <% if @post_event.favorited_by?(current_user) %>
-                  <%= link_to "お気に入りから外す", post_event_favorite_path(@post_event), method: :delete, remote: true, class: "btn btn-secondary" %>
-                <% else %>
-                  <%= link_to "お気に入りに追加", post_event_favorite_path(@post_event), method: :post, remote: true, class: "btn btn-warning" %>
-                <% end %>
-              </td>
-              <td class="d-flex justify-content-start">
-                Total <%= @post_event.favorites.count %> fav
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <% if @post_event.join_in?(current_user) %>
-                  <%= link_to "メンバーから退出", post_event_union_path(@post_event), method: :delete, class: "btn btn-secondary" %>
-                <% else %>
-                  <%= link_to "メンバーに参加する", post_event_union_path(@post_event), method: :post, class: "btn btn-warning" %>
-                <% end %>
-              </td>
-              <td>
-                <%= link_to "参加中のメンバー", post_event_union_path(@post_event), class: "btn btn-primary" %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="row d-flex justify-content-between mt-5 mx-4">
+        <%= render 'favorite-btn', post_event: @post_event %>
+        
+        <%= render 'join-btn', post_event: @post_event %>
+        
+        <% if @post_event.user == current_user %>
+          <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
+          <%= link_to "削除", post_event_path(@post_event), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
+        <% end %>
       </div>
-    </div>
-    <div class="col-5">
-      <%= render 'comment', post_event: @post_event, post_comment: @post_comment %>
+      <div class="row mt-5">
+        <%= render 'comment', post_event: @post_event, post_comment: @post_comment %>
+      </div>
     </div>
   </div>
 </div>
-

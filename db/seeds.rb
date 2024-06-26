@@ -38,7 +38,7 @@ end
 PostEvent.find_or_create_by!(title: "超神田フェステイバル") do |post_event|
   post_event.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/kanda.jpg"), filename:"kanda.jpg")
   post_event.user = fishman
-  post_event.caption = "長年続いている伝統行事が今年も開催されます"
+  post_event.caption = "長年続いている伝統行事が今年も開催されます。"
   post_event.event_date = "2024/08/01"
   post_event.address = "東京都千代田区外神田２丁目" 
 end
@@ -46,7 +46,7 @@ end
 PostEvent.find_or_create_by!(title: "なんとかだんじり祭り") do |post_event|
   post_event.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/danjiri.jpg"), filename:"danjiri.jpg")
   post_event.user = galileo
-  post_event.caption = "最高時速は300kmを超えるところが見どころ！"
+  post_event.caption = "最高時速は300kmを超えるところが見どころ！四兄弟ならではのチームワークにより圧倒的なスピードを実現しています。"
   post_event.event_date = "2024/09/01"
   post_event.address = "大阪府岸和田市岸城町" 
 end
