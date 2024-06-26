@@ -44,15 +44,19 @@
           </div>
         </div>
       </div>
-      <div class="row d-flex justify-content-between mt-5 mx-4">
-        <%= render 'favorite-btn', post_event: @post_event %>
-        
-        <%= render 'join-btn', post_event: @post_event %>
-        
-        <% if @post_event.user == current_user %>
-          <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
-          <%= link_to "削除", post_event_path(@post_event), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
-        <% end %>
+      <div class="row mt-5">
+        <div class="col-5">
+          <%= render 'favorite-btn', post_event: @post_event %>
+        </div>
+        <div class="col-5">
+          <%= render 'join-btn', post_event: @post_event %>
+        </div>
+        <div class="col-2">
+          <% if @post_event.user == current_user %>
+            <%= link_to "編集", edit_post_event_path(@post_event),class: "btn btn-success" %>
+            <%= link_to "削除", post_event_path(@post_event), method: :delete, class: "btn btn-danger", "data-confirm" => "削除してよろしいですか?" %>
+          <% end %>
+        </div>
       </div>
       <div class="row mt-5">
         <%= render 'comment', post_event: @post_event, post_comment: @post_comment %>
