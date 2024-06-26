@@ -1,0 +1,7 @@
+  <% if @post_event.join_in?(current_user) %>
+    <%= link_to "メンバーから退出", post_event_union_path(@post_event), method: :delete, class: "btn btn-secondary" %>
+  <% else %>
+    <%= link_to "メンバーに参加する", post_event_union_path(@post_event), method: :post, class: "btn btn-warning" %>
+  <% end %>
+
+  <%= link_to "参加中のメンバー", post_event_union_path(@post_event), class: "btn btn-primary" %>
