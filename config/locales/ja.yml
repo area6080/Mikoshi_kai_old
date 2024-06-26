@@ -20,7 +20,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -46,7 +46,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -87,6 +87,10 @@ ja:
       year: 年
   errors:
     format: "%{attribute}%{message}"
+    attribute:
+      title: イベント名
+      event_date: 開催日時
+      address: 住所
     messages:
       accepted: を受諾してください
       blank: を入力してください

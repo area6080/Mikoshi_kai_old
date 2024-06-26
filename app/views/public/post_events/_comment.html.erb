@@ -2,7 +2,7 @@
   <div class="row mt-1">
     <div class="col-8 offset-1">
       <%= form_with model: [post_event, post_comment] do |f| %>
-        <%= f.text_area :comment, size: "80x3", placeholder: "コメントをどうぞ！" %>
+        <%= f.text_area :comment, size: "60x3", placeholder: "コメントをどうぞ！" %>
         <%= f.submit "送信", class: "btn btn-primary" %>
       <% end %>
     </div>
