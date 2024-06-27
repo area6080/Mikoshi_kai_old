@@ -31,8 +31,8 @@ class Public::PostEventsController < ApplicationController
       flash[:notice] = "イベントを投稿しました!"
       redirect_to post_event_path(@post_event.id)
     else
-      flash.now[:error] = @post_event.errors.full_messages
-      render :new
+      flash[:error] = @post_event.errors.full_messages
+      redirect_to request.referer
     end
   end
 
@@ -47,7 +47,9 @@ class Public::PostEventsController < ApplicationController
       flash[:notice] = "イベント内容を更新しました!"
       redirect_to post_event_path(@post_event.id)
     else
-      flash.now[:error] = @post_event.errors.full_messages
+      flash[:error] = @post_event.errors.full_messages
+      # エラーメッセージをflashに全部入れてしまっているのでリスト化できていない
+      # flash.now[:error] = @post_event.errors.full_messages
       render :edit
     end
   end
