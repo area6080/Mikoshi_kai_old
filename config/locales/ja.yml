@@ -4,6 +4,11 @@ ja:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%m/%d %H:%M"
   activerecord:
+    attributes:
+      post_event:
+        title: イベント名
+        event_date: 開催日時
+        address: 住所
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -87,10 +92,6 @@ ja:
       year: 年
   errors:
     format: "%{attribute}%{message}"
-    attribute:
-      title: イベント名
-      event_date: 開催日時
-      address: 住所
     messages:
       accepted: を受諾してください
       blank: を入力してください

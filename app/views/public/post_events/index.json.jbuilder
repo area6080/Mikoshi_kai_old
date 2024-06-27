@@ -13,6 +13,6 @@ json.data do
       json.address post_event.address
       json.latitude post_event.latitude
       json.longitude post_event.longitude
-    end  
+    end
   end
 end

@@ -1,7 +1,6 @@
 class CreatePostEvents < ActiveRecord::Migration[6.1]
   def change
     create_table :post_events do |t|
-      
       t.integer :user_id,         null: false
       t.string :title,            null: false
       t.text :caption

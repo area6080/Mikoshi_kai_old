@@ -1,6 +1,6 @@
 class Public::UnionsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def show
     @post_event = PostEvent.find(params[:post_event_id])
     join = Union.where(post_event_id: @post_event.id).pluck(:user_id)

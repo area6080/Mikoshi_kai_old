@@ -1,7 +1,6 @@
 class CreateParticipations < ActiveRecord::Migration[6.1]
   def change
     create_table :participations do |t|
-      
       t.integer :user_id,         null: false
       t.integer :group_id,         null: false
 
