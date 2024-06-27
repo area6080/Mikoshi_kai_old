@@ -27,7 +27,7 @@
         </div>
         <div class="col-1 comment-box">
           <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "削除してよろしいですか?" %>
+          <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "コメントを削除しますか？" %>
           <% end %>
         </div>
       <% end %>
