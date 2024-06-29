@@ -1,4 +1,4 @@
-require("dotenv").config(); 
+require("dotenv").config();
 
 const { environment } = require('@rails/webpacker')
 
