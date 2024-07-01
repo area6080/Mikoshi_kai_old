@@ -11,15 +11,15 @@
     </div>
   </div>
   
-  <div class="row matsuri-style mt-4">
-      <% post_event.post_comments.each do |post_comment| %>
+  <div class="row matsuri-style overflow-auto mt-4" style="width:900px; height:400px;">
+      <% post_event.post_comments.reverse_each do |post_comment| %>
+      <!--reverse_eachにより新しい順に表示-->
         <div class="col-10 offset-1 comment-box my-2 py-1 top-line">
           <%= post_comment.comment %>
         </div>
-        <div class="col-1 offset-6 comment-box">
+        <div class="col-3 offset-6 comment-box d-flex justify-content-end">
           <%= image_tag post_comment.user.get_profile_image(30,30), class: "rounded-circle" %>
-        </div>
-        <div class="col-2 comment-box">
+          &nbsp;
           <%= post_comment.user.name %>
         </div>
         <div class="col-2 comment-box d-flex justify-content-center">

@@ -19,7 +19,8 @@ class User < ApplicationRecord
       file_path = Rails.root.join("app/assets/images/no_image.jpg")
       profile_image.attach(io: File.open(file_path), filename: "no_image.jpg", content_type: "image/jpg")
     end
-    profile_image.variant(resize_to_fit: [width, height]).processed
+    profile_image.variant(resize_to_fill: [width, height]).processed
+    # profile_image.variant(resize_to_fill: [width, height, gravity]).processed 切り出す位置の指定
   end
 
   def self.looks(word)

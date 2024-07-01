@@ -20,13 +20,15 @@ class Public::PostEventsController < ApplicationController
   def show
     @post_event = PostEvent.find(params[:id])
     @post_comment = PostComment.new
-    @post_comments = PostComment.preload(:user).order(created_at: :desc)
+    # @post_comments = PostComment.preload(:user).order(created_at: :desc)
     # @post_comments = PostComment.eager_load(:user).order('created_at DESC') has_oneの場合？
+    # 上記二行で制御せずreverse_eachを使用する
   end
 
   def create
     @post_event = PostEvent.new(post_event_params)
     @post_event.user_id = current_user.id
+    
     if @post_event.save
       flash[:notice] = "イベントを投稿しました!"
       redirect_to post_event_path(@post_event.id)

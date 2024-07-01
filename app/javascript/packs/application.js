@@ -8,10 +8,10 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
-// import '../stylesheets/mikoshi.scss'
+import '../stylesheets/mikoshi.scss'
 
 
-//import "./map"
+import "./map"
 //import "./jpostal"
 
 Rails.start()
