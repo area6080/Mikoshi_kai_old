@@ -6,7 +6,7 @@
           <div class="row d-flex justify-content-center">
             <%= image_tag @post_event.get_image(250,250), class: "rounded-lg" %>
           </div>
-          <div class="row d-flex justify-content-around mt-2">
+          <div class="row d-flex justify-content-around mt-3">
             <% @post_event.tags.first(3).each do |tag| %>
               <div class="badge badge-secondary"><%= tag.name %></div>
             <% end %>

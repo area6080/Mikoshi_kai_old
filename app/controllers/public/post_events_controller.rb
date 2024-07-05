@@ -20,7 +20,6 @@ class Public::PostEventsController < ApplicationController
   def show
     @post_event = PostEvent.find(params[:id])
     @post_comment = PostComment.new
-    # @tags = @post_event.tags.all
     # @post_comments = PostComment.preload(:user).order(created_at: :desc)
     # @post_comments = PostComment.eager_load(:user).order('created_at DESC') has_oneの場合？
     # 上記二行で制御せずreverse_eachを使用する

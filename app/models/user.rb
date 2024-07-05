@@ -33,7 +33,7 @@ class User < ApplicationRecord
     find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "GuestUser"
-      user.introduction = "神輿會の機能をどうぞご確認ください！"
+      user.introduction = "神輿會の機能をどうぞご確認ください！投稿やグループへの参加などすべての機能をご利用いただけます。"
       user.profile_image.attach(io: File.open("#{Rails.root}/app/assets/images/guest.jpg"), filename: "guest.jpg")
     end
   end
