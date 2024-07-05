@@ -3,8 +3,8 @@ class PostEvent < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :unions, dependent: :destroy
-  
-  has_many :tags, dependent: :destroy 
+
+  has_many :tags, dependent: :destroy
 
   has_one_attached :image
 
@@ -12,9 +12,11 @@ class PostEvent < ApplicationRecord
   validates :event_date, presence: true
   validates :address, presence: true
 
+  validates :image, presence: true
+
   geocoded_by :address
   after_validation :geocode
-  
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join("app/assets/images/no_image.jpg")
