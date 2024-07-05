@@ -58,8 +58,9 @@ footer {
   border-top: 0.1rem solid #808078;
 }
 
-#back {
-  position: fixed;
-  right: 20px;
-  bottom: 50px;
+.gothic-bold {
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
+

@@ -14,8 +14,13 @@
 );
 // !defaultフラグが使用されている変数のみを変更できる
 
-
 #map {
   width: 100%;
   height: calc(100vh - 160px);
+}
+
+#back {
+  position: fixed;
+  right: 20px;
+  bottom: 50px;
 }

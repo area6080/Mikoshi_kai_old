@@ -13,7 +13,6 @@ import '../stylesheets/mikoshi.scss'
 
 import "./map"
 import "./script"
-//import "./jpostal"
 
 Rails.start()
 Turbolinks.start()
