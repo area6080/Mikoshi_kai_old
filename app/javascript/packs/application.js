@@ -10,9 +10,11 @@ import "bootstrap";
 import "../stylesheets/application";
 import '../stylesheets/mikoshi.scss'
 
+
 import "./map"
-import "./jpostal"
+//import "./jpostal"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

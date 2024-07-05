@@ -35,7 +35,7 @@
 ![ER図](https://github.com/area6080/Mikoshi_kai/blob/feature-readme/app/assets/images/ER_view.jpg)
 
 ## 開発環境
-* OS：Linux(CentOS)
+* OS：Linux(Amazon Linux 2023)
 * 言語：HTML,CSS,JavaScript,Ruby,SQL
 * フレームワーク：Ruby on Rails
 * JSライブラリ：jQuery

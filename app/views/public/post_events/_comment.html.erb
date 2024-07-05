@@ -11,26 +11,30 @@
     </div>
   </div>
   
-  <div class="row matsuri-style mt-4">
-      <% post_event.post_comments.each do |post_comment| %>
-        <div class="col-10 offset-1 comment-box my-2 py-1 top-line">
-          <%= post_comment.comment %>
-        </div>
-        <div class="col-1 offset-6 comment-box">
-          <%= image_tag post_comment.user.get_profile_image(30,30), class: "rounded-circle" %>
-        </div>
-        <div class="col-2 comment-box">
-          <%= post_comment.user.name %>
-        </div>
-        <div class="col-2 comment-box d-flex justify-content-center">
-          <%= l post_comment.created_at, format: :short %>
-        </div>
-        <div class="col-1 comment-box">
-          <% if post_comment.user == current_user %>
-          <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "コメントを削除しますか？" %>
-          <% end %>
+  <div class="row matsuri-style overflow-auto mt-4" style="width:900px; height:400px;">
+    <div class="col">
+      <% post_event.post_comments.reverse_each do |post_comment| %>
+      <!--reverse_eachにより新しい順に表示-->
+        <div class="row" style="height:80px;">
+          <div class="col-10 offset-1 comment-box my-2 py-1 top-line">
+            <%= post_comment.comment %>
+          </div>
+          <div class="col-3 offset-6 comment-box d-flex justify-content-end">
+            <%= image_tag post_comment.user.get_profile_image(30,30), class: "rounded-circle" %>
+            &nbsp;
+            <%= post_comment.user.name %>
+          </div>
+          <div class="col-2 comment-box d-flex justify-content-center">
+            <%= l post_comment.created_at, format: :short %>
+          </div>
+          <div class="col-1 comment-box">
+            <% if post_comment.user == current_user %>
+            <%= link_to "削除", post_event_post_comment_path(post_comment.post_event, post_comment), method: :delete, class: "btn btn-sm btn-danger", "data-confirm" => "コメントを削除しますか？" %>
+            <% end %>
+          </div>
         </div>
       <% end %>
+    </div>
   </div>
 </div>
 

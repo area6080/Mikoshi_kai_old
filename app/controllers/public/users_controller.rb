@@ -31,27 +31,34 @@ class Public::UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    user = User.find(params[:id])
+    if user.guest_user?
+      flash[:notice] = "ゲスト機能のご利用ありがとうございました。"
+    else
+      flash[:notice] = "またのご利用をお待ちしております。"
+    end
+    user.destroy
     redirect_to new_user_registration_path
   end
 
-    private
-      def update_user_params
-        params.require(:user).permit(:name, :introduction, :profile_image)
-      end
+  private
+  
+  def update_user_params
+    params.require(:user).permit(:name, :introduction, :profile_image)
+  end
 
-      def is_matching_login_user
-        user = User.find(params[:id])
-        unless user.id == current_user.id
-          redirect_to user_path(current_user)
-        end
-      end
-      # 他人のユーザー編集画面に入るのを無効化
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user)
+    end
+  end
+  # 他人のユーザー編集画面に入るのを無効化
 
-      def ensure_guest_user
-        @user = User.find(params[:id])
-        if @user.guest_user?
-          redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集は行えません。"
-        end
-      end
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集は行えません。"
+    end
+  end
 end
