@@ -12,7 +12,6 @@ class PostEvent < ApplicationRecord
   validates :event_date, presence: true
   validates :address, presence: true
 
-  validates :image, presence: true
 
   geocoded_by :address
   after_validation :geocode

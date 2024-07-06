@@ -28,16 +28,27 @@ class Public::PostEventsController < ApplicationController
   def create
     @post_event = PostEvent.new(post_event_params)
     @post_event.user_id = current_user.id
-    tags = Vision.get_image_data(post_event_params[:image])
-    if @post_event.save
-      tags.each do |tag|
-        @post_event.tags.create(name: tag)
+    
+    if post_event_params[:image].present?
+      tags = Vision.get_image_data(post_event_params[:image])
+      if @post_event.save
+        tags.each do |tag|
+          @post_event.tags.create(name: tag)
+        end
+        flash[:notice] = "イベントを投稿しました!"
+        redirect_to post_event_path(@post_event.id)
+      else
+        flash[:error] = @post_event.errors.full_messages
+        redirect_to request.referer
       end
-      flash[:notice] = "イベントを投稿しました!"
-      redirect_to post_event_path(@post_event.id)
     else
-      flash[:error] = @post_event.errors.full_messages
-      redirect_to request.referer
+      if @post_event.save
+        flash[:notice] = "イベントを投稿しました!"
+        redirect_to post_event_path(@post_event.id)
+      else
+        flash[:error] = @post_event.errors.full_messages
+        redirect_to request.referer
+      end
     end
   end
 
