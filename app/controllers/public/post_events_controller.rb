@@ -28,8 +28,9 @@ class Public::PostEventsController < ApplicationController
   def create
     @post_event = PostEvent.new(post_event_params)
     @post_event.user_id = current_user.id
-    
-    if post_event_params[:image].present?
+
+    if @post_event.image.attached?
+      # post_event_params[:image].present?
       tags = Vision.get_image_data(post_event_params[:image])
       if @post_event.save
         tags.each do |tag|
