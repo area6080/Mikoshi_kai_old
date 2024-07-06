@@ -25,12 +25,28 @@ class Public::PostEventsController < ApplicationController
     # 上記二行で制御せずreverse_eachを使用する
   end
 
+  # def create
+  #   @post_event = PostEvent.new(post_event_params)
+  #   @post_event.user_id = current_user.id
+  
+  #   if @post_event.image.attached?
+  #     @post_event.create_tag
+  #   end
+  
+  #   if @post_event.save
+  #     flash[:notice] = "イベントを投稿しました!"
+  #     redirect_to post_event_path(@post_event.id)
+  #   else
+  #     flash[:error] = @post_event.errors.full_messages
+  #     redirect_to request.referer
+  #   end
+  # end
+# FATコントローラ解決＆update対応させたいので検討中　うまく動かない
   def create
     @post_event = PostEvent.new(post_event_params)
     @post_event.user_id = current_user.id
 
     if @post_event.image.attached?
-      # post_event_params[:image].present?
       tags = Vision.get_image_data(post_event_params[:image])
       if @post_event.save
         tags.each do |tag|
