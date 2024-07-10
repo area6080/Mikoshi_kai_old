@@ -25,9 +25,10 @@ class PostEvent < ApplicationRecord
     # resize_to_limit
   end
   
-  def create_tag
+  def create_tags
     if image.attached?
-      tags = Vision.get_image_data(image)
+      self.tags.destroy_all
+      tags = Vision.get_image_data(self.image)
       tags.each do |tag|
         self.tags.create(name: tag)
       end

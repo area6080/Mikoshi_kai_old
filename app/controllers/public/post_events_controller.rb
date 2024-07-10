@@ -30,7 +30,7 @@ class Public::PostEventsController < ApplicationController
     @post_event.user_id = current_user.id
 
     if @post_event.save
-      @post_event.create_tag
+      @post_event.create_tags
       flash[:notice] = "イベントを投稿しました!"
       redirect_to post_event_path(@post_event.id)
     else
@@ -39,33 +39,6 @@ class Public::PostEventsController < ApplicationController
     end
   end
 
-  # def create
-  #   @post_event = PostEvent.new(post_event_params)
-  #   @post_event.user_id = current_user.id
-
-  #   if @post_event.image.attached?
-  #     tags = Vision.get_image_data(post_event_params[:image])
-  #     if @post_event.save
-  #       tags.each do |tag|
-  #         @post_event.tags.create(name: tag)
-  #       end
-  #       flash[:notice] = "イベントを投稿しました!"
-  #       redirect_to post_event_path(@post_event.id)
-  #     else
-  #       flash[:error] = @post_event.errors.full_messages
-  #       redirect_to request.referer
-  #     end
-  #   else
-  #     if @post_event.save
-  #       flash[:notice] = "イベントを投稿しました!"
-  #       redirect_to post_event_path(@post_event.id)
-  #     else
-  #       flash[:error] = @post_event.errors.full_messages
-  #       redirect_to request.referer
-  #     end
-  #   end
-  # end
-
   def edit
     @post_event = PostEvent.find(params[:id])
     @user = User.find(@post_event.user_id)
@@ -73,7 +46,9 @@ class Public::PostEventsController < ApplicationController
 
   def update
     @post_event = PostEvent.find(params[:id])
+    
     if @post_event.update(update_post_event_params)
+      @post_event.create_tags
       flash[:notice] = "イベント内容を更新しました!"
       redirect_to post_event_path(@post_event.id)
     else
