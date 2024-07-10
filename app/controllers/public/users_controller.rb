@@ -9,7 +9,7 @@ class Public::UsersController < ApplicationController
 
     favs = Favorite.where(user_id: @user.id).pluck(:post_event_id)
     @fav_events = PostEvent.new
-    # nil回避のため入れた
+    # nil回避のため
     @fav_events = PostEvent.where(id: favs)
     # Railsのwhereメソッドでは整数の配列を渡すことはできない→id: favs
   end

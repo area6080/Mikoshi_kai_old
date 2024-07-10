@@ -21,11 +21,8 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
-    if @group.save
-      redirect_to groups_path
-    else
-      render :new
-    end
+    return redirect_to groups_path if @group.save
+    render :new
   end
 
   def edit
@@ -33,11 +30,8 @@ class Public::GroupsController < ApplicationController
   end
 
   def update
-    if @group.update(group_params)
-      redirect_to groups_path
-    else
-      render :edit
-    end
+    return redirect_to groups_path if @group.update(group_params)
+    render :edit
   end
 
   def destroy
@@ -47,14 +41,15 @@ class Public::GroupsController < ApplicationController
   end
 
   private
-    def group_params
-      params.require(:group).permit(:name)
-    end
+  
+  def group_params
+    params.require(:group).permit(:name)
+  end
 
-    def is_matching_login_user
-      @group = Group.find(params[:id])
-      unless @group.owner_id == current_user.id
-        redirect_to groups_path
-      end
+  def is_matching_login_user
+    @group = Group.find(params[:id])
+    unless @group.owner_id == current_user.id
+      redirect_to groups_path
     end
+  end
 end
