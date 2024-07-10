@@ -32,11 +32,11 @@ class Public::UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    if user.guest_user?
-      flash[:notice] = "ゲスト機能のご利用ありがとうございました。"
-    else
-      flash[:notice] = "またのご利用をお待ちしております。"
-    end
+    flash[:notice] = if user.guest_user?
+                       "ゲスト機能のご利用ありがとうございました。"
+                     else
+                       "またのご利用をお待ちしております。"
+                     end
     user.destroy
     redirect_to new_user_registration_path
   end

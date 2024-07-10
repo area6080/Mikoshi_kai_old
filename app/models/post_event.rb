@@ -25,12 +25,14 @@ class PostEvent < ApplicationRecord
     # resize_to_limit
   end
   
-  # def create_tag
-  #   tags = Vision.get_image_data(self.image)
-  #   tags.each do |tag|
-  #     self.tags.create(name: tag)
-  #   end
-  # end
+  def create_tag
+    if image.attached?
+      tags = Vision.get_image_data(image)
+      tags.each do |tag|
+        self.tags.create(name: tag)
+      end
+    end
+  end
 
   def self.looks(word)
     PostEvent.where("title LIKE?", "%#{word}%")
