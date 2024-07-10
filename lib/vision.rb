@@ -4,12 +4,17 @@ require 'net/https'
 
 module Vision
   class << self
-    def get_image_data(image_file)
+    def get_image_data(image)
       # APIのURL作成
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['VISION_API_KEY']}"
 
+      # 画像データをダウンロード（追記7/10）
+      image_data = image.download
+
       # 画像をbase64にエンコード
-      base64_image = Base64.encode64(image_file.tempfile.read)
+      base64_image = Base64.encode64(image_data)
+      # ActiveStorageにはtempfileメソッドがないため
+      # base64_image = Base64.encode64(image_file.tempfile.read)
 
       # APIリクエスト用のJSONパラメータ
       params = {

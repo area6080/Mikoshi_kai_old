@@ -20,7 +20,7 @@ class User < ApplicationRecord
       profile_image.attach(io: File.open(file_path), filename: "no_image.jpg", content_type: "image/jpg")
     end
     profile_image.variant(resize_to_fill: [width, height]).processed
-    # profile_image.variant(resize_to_fill: [width, height, gravity]).processed 切り出す位置の指定
+    # resize_to_fill: [width, height, gravity]).processed 切り出す位置の指定
   end
 
   def self.looks(word)
