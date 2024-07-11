@@ -15,11 +15,11 @@
         <table class="table table-borderless matsuri-style">
           <tr>
             <td><%= f.label :メールアドレス %></td>
-            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", required: true %></td>
           </tr>
           <tr>
             <td><%= f.label :パスワード %></td>
-            <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control", required: true %></td>
           </tr>
           <tr>
             <td></td>

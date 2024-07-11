@@ -1,6 +1,6 @@
 class Public::PostEventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index]
+  before_action :is_matching_login_user, only: %i[edit update destroy]
 
   def index
     respond_to do |format|
@@ -34,7 +34,6 @@ class Public::PostEventsController < ApplicationController
       flash[:notice] = "イベントを投稿しました!"
       redirect_to post_event_path(@post_event.id)
     else
-      flash[:error] = @post_event.errors.full_messages
       redirect_to request.referer
     end
   end
@@ -52,8 +51,6 @@ class Public::PostEventsController < ApplicationController
       flash[:notice] = "イベント内容を更新しました!"
       redirect_to post_event_path(@post_event.id)
     else
-      flash[:error] = @post_event.errors.full_messages
-      # エラーメッセージをflashに全部入れてしまっているのでリスト化できていない
       render :edit
     end
   end
