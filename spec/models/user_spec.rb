@@ -3,13 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Userモデルのテスト', type: :model do
-  
+
   describe 'モデルのテスト' do
     it "有効なユーザーは保存されるか" do
-      expect(FactoryBot.build(:use)).to be_valid
+      expect(FactoryBot.build(:user)).to be_valid
     end
-  end  
-  
+  end
+
   describe 'バリデーションのテスト' do
     subject { user.valid? }
 
