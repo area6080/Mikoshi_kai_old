@@ -12,21 +12,21 @@
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-font-awesome"></i></span>
             </div>
-            <%= f.text_field :title, class: "form-control" %>
+            <%= f.text_field :title, class: "form-control", required: true %>
           </div>
           
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-calendar"></i></span>
             </div>
-            <%= f.text_field :event_date, class: "form-control"%>
+            <%= f.text_field :event_date, class: "form-control", required: true %>
           </div>
           
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
             </div>
-            <%= f.text_field :address, class: "form-control" %>
+            <%= f.text_field :address, class: "form-control", required: true %>
           </div>
           
           <%= f.text_area :caption, class: "form-control", rows: "3" %>

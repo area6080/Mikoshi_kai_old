@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_matching_login_user, only: [:edit, :update]
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :is_matching_login_user, only: %i[edit update]
+  before_action :ensure_guest_user, only: %i[edit]
 
   def show
     @user = User.find(params[:id])
@@ -11,9 +11,7 @@ class Public::UsersController < ApplicationController
     @fav_events = PostEvent.new
     # nil回避のため
     @fav_events = PostEvent.where(id: favs)
-    # Railsのwhereメソッドでは整数の配列を渡すことはできない→id: favs
   end
-
 
   def edit
     @user = User.find(params[:id])
@@ -21,13 +19,8 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(update_user_params)
-      flash[:notice] = "ユーザー情報を更新しました!"
-      redirect_to user_path(@user.id)
-    else
-      flash.now[:error] = @user.errors.full_messages
-      render :edit
-    end
+    return redirect_to user_path(@user.id), notice: "ユーザー情報を更新しました！" if @user.update(update_user_params)
+    render :edit
   end
 
   def destroy

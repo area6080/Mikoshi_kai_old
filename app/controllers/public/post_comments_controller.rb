@@ -5,13 +5,8 @@ class Public::PostCommentsController < ApplicationController
     post_event = PostEvent.find(params[:post_event_id])
     comment = current_user.post_comments.new(post_comment_params)
     comment.post_event_id = post_event.id
-    if comment.save
-      flash[:notice] = "コメントを投稿しました!"
-      redirect_to post_event_path(post_event)
-    else
-      flash[:error] = comment.errors.full_messages
-      redirect_to request.referer
-    end
+    return redirect_to post_event_path(post_event), notice: "コメントを投稿しました！" if comment.save
+    redirect_to request.referer
   end
 
   def destroy
