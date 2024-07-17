@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostEvent < ApplicationRecord
   belongs_to :user
   has_many :post_comments, dependent: :destroy
@@ -24,7 +26,7 @@ class PostEvent < ApplicationRecord
     image.variant(resize_to_fit: [width, height]).processed
     # resize_to_limit
   end
-  
+
   def create_tags
     if image.attached?
       self.tags.destroy_all

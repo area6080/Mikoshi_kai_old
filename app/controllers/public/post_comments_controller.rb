@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_user!
 
@@ -15,8 +17,7 @@ class Public::PostCommentsController < ApplicationController
   end
 
   private
-  
-  def post_comment_params
-    params.require(:post_comment).permit(:comment)
-  end
+    def post_comment_params
+      params.require(:post_comment).permit(:comment)
+    end
 end

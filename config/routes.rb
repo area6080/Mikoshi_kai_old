@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :admin, skip: %i[registrations passwords], controllers: {
   sessions: "admin/sessions"

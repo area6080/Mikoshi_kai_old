@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_matching_login_user, only: %i[edit update]
@@ -41,15 +43,14 @@ class Public::GroupsController < ApplicationController
   end
 
   private
-  
-  def group_params
-    params.require(:group).permit(:name)
-  end
-
-  def is_matching_login_user
-    @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
-      redirect_to groups_path
+    def group_params
+      params.require(:group).permit(:name)
     end
-  end
+
+    def is_matching_login_user
+      @group = Group.find(params[:id])
+      unless @group.owner_id == current_user.id
+        redirect_to groups_path
+      end
+    end
 end
