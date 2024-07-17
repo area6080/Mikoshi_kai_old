@@ -1,4 +1,4 @@
-name: RSpec Actions
+name: RSpec and Rubocop
 on: pull_request
 
 jobs:
@@ -51,4 +51,4 @@ jobs:
           bundler-cache: true
 
       - name: Run Rubocop
-        run: bundle exec rubocop
+        run: bundle exec rubocop -a
