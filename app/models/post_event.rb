@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostEvent < ApplicationRecord
   belongs_to :user
   has_many :post_comments, dependent: :destroy

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::PostEventsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
   before_action :is_matching_login_user, only: %i[edit update destroy]

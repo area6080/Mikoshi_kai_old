@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.data do
   json.items do
     json.array!(@post_events) do |post_event|

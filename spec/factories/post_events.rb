@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :post_event do
     title { Faker::Lorem.characters(number: 6) }

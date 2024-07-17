@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :is_matching_login_user, only: %i[edit update]
