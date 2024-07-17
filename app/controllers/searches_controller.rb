@@ -4,9 +4,9 @@ class SearchesController < ApplicationController
     @word = params[:word]
 
     @result = if @model == "User"
-                User.looks(params[:word])
-              else
-                PostEvent.looks(params[:word])
-              end
+      User.looks(params[:word])
+    else
+      PostEvent.looks(params[:word])
+    end
   end
 end

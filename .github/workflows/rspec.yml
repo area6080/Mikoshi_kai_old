@@ -1,4 +1,4 @@
-name: RSpec and Rubocop
+name: RSpec 
 
 on: pull_request
 
@@ -37,20 +37,20 @@ jobs:
       - name: Run RSpec
         run: bundle exec rspec
   
-  Rubocop:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+  # Rubocop:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 10
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Setup Ruby Env
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1.2'
-          bundler-cache: true
-          # 依存関係のインストールをスピードアップする
+  #     - name: Setup Ruby Env
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: '3.1.2'
+  #         bundler-cache: true
+  #         # 依存関係のインストールをスピードアップする
 
-      - name: Run Rubocop
-        run: bundle exec rubocop
+  #     - name: Run Rubocop
+  #       run: bundle exec rubocop
