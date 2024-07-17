@@ -4,6 +4,6 @@ test:
   encoding: utf8mb4
   charset: utf8mb4
   collation: utf8mb4_general_ci
-  host: '%'
+  host: ${{ secrets.MYSQL_DATABASE }}
   username: root
   password: root
