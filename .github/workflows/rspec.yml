@@ -1,4 +1,4 @@
-name: Run RSpec Actions
+name: RSpec Actions
 on: pull_request
 
 jobs:
@@ -26,6 +26,7 @@ jobs:
 
       - name: Setup Database
         run: |
+          bundle install --jobs 4 --retry 3
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
 
