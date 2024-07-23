@@ -41,13 +41,10 @@ class Public::PostEventsController < ApplicationController
   end
 
   def edit
-    @post_event = PostEvent.find(params[:id])
-    @user = User.find(@post_event.user_id)
   end
+  # is_matching_login_userで定義しているので省略できる
 
   def update
-    @post_event = PostEvent.find(params[:id])
-
     if @post_event.update(update_post_event_params)
       @post_event.create_tags
       flash[:notice] = "イベント内容を更新しました!"
@@ -58,7 +55,7 @@ class Public::PostEventsController < ApplicationController
   end
 
   def destroy
-    PostEvent.find(params[:id]).destroy
+    @post_event.destroy
     redirect_to user_path(current_user)
   end
 
@@ -74,9 +71,9 @@ class Public::PostEventsController < ApplicationController
   end
 
   def is_matching_login_user
-    post_event = PostEvent.find(params[:id])
-    user = User.find(post_event.user_id)
-    unless user.id == current_user.id
+    @post_event = PostEvent.find(params[:id])
+    @user = User.find(@post_event.user_id)
+    unless @user.id == current_user.id
       redirect_to post_events_path
     end
   end
