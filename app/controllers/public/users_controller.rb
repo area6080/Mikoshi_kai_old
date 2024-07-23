@@ -2,7 +2,7 @@
 
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_matching_login_user, only: %i[edit update]
+  before_action :is_matching_login_user, only: %i[edit update destroy]
   before_action :ensure_guest_user, only: %i[edit]
 
   def show
@@ -37,22 +37,23 @@ class Public::UsersController < ApplicationController
   end
 
   private
-    def update_user_params
-      params.require(:user).permit(:name, :introduction, :profile_image)
-    end
+  
+  def update_user_params
+    params.require(:user).permit(:name, :introduction, :profile_image)
+  end
 
-    def is_matching_login_user
-      user = User.find(params[:id])
-      unless user.id == current_user.id
-        redirect_to user_path(current_user)
-      end
+  def is_matching_login_user
+    user = User.find(params[:id])
+    unless user.id == current_user.id
+      redirect_to user_path(current_user)
     end
-    # 他人のユーザー編集画面に入るのを無効化
+  end
+  # 他人のユーザー編集画面に入るのを無効化
 
-    def ensure_guest_user
-      @user = User.find(params[:id])
-      if @user.guest_user?
-        redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集は行えません。"
-      end
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.guest_user?
+      redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集は行えません。"
     end
+  end
 end
