@@ -23,7 +23,7 @@ class Public::PostEventsController < ApplicationController
     @post_event = PostEvent.find(params[:id])
     @post_comment = PostComment.new
     # @post_comments = PostComment.preload(:user).order(created_at: :desc)
-    # @post_comments = PostComment.eager_load(:user).order('created_at DESC') has_oneの場合？
+    # @post_comments = PostComment.eager_load(:user).order('created_at DESC') has_oneの場合
     # 上記二行で制御せずreverse_eachを使用する
   end
 
@@ -64,20 +64,21 @@ class Public::PostEventsController < ApplicationController
 
 
   private
-    def post_event_params
-      params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :user_id, :image)
-    end
+  
+  def post_event_params
+    params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :user_id, :image)
+  end
 
-    def update_post_event_params
-      params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :image)
-    end
+  def update_post_event_params
+    params.require(:post_event).permit(:title, :caption, :event_date, :address, :latitude, :longitude, :image)
+  end
 
-    def is_matching_login_user
-      post_event = PostEvent.find(params[:id])
-      user = User.find(post_event.user_id)
-      unless user.id == current_user.id
-        redirect_to post_events_path
-      end
+  def is_matching_login_user
+    post_event = PostEvent.find(params[:id])
+    user = User.find(post_event.user_id)
+    unless user.id == current_user.id
+      redirect_to post_events_path
     end
+  end
   # 他人の投稿編集画面に入るのを無効化
 end
