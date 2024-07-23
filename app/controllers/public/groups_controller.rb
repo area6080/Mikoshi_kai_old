@@ -2,7 +2,7 @@
 
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :is_matching_login_user, only: %i[edit update]
+  before_action :is_matching_login_user, only: %i[edit update destroy]
 
   def index
     @groups = Group.all
@@ -28,7 +28,6 @@ class Public::GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find(params[:id])
   end
 
   def update
@@ -37,20 +36,20 @@ class Public::GroupsController < ApplicationController
   end
 
   def destroy
-    group = Group.find(params[:id])
-    group.destroy
+    Group.find(params[:id]).destroy
     redirect_to groups_path
   end
 
   private
-    def group_params
-      params.require(:group).permit(:name)
-    end
+  
+  def group_params
+    params.require(:group).permit(:name)
+  end
 
-    def is_matching_login_user
-      @group = Group.find(params[:id])
-      unless @group.owner_id == current_user.id
-        redirect_to groups_path
-      end
+  def is_matching_login_user
+    @group = Group.find(params[:id])
+    unless @group.owner_id == current_user.id
+      redirect_to groups_path
     end
+  end
 end

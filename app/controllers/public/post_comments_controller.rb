@@ -2,6 +2,7 @@
 
 class Public::PostCommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :is_matching_login_user, only: %i[destroy]
 
   def create
     post_event = PostEvent.find(params[:post_event_id])
@@ -17,7 +18,16 @@ class Public::PostCommentsController < ApplicationController
   end
 
   private
-    def post_comment_params
-      params.require(:post_comment).permit(:comment)
+  
+  def post_comment_params
+    params.require(:post_comment).permit(:comment)
+  end
+  
+  def is_matching_login_user
+    post_comment = PostComment.find(params[:id])
+    user = User.find(post_comment.user_id)
+    unless user.id == current_user.id
+      redirect_to post_events_path
     end
+  end
 end

@@ -8,5 +8,6 @@ class CreateUnions < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :unions, [:user_id, :post_event_id], unique: true
   end
 end
